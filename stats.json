@@ -1,0 +1,64 @@
+{
+  "assetsByChunkName": {
+    "path---alphago-zero": [
+      "path---alphago-zero-e841c7d8759c6c843dda.js",
+      "path---alphago-zero-e841c7d8759c6c843dda.js.map"
+    ],
+    "component---src-pages-index-js": [
+      "component---src-pages-index-js-93e8133f60e36ebf44b3.js",
+      "component---src-pages-index-js-93e8133f60e36ebf44b3.js.map"
+    ],
+    "path---": [
+      "path----557518bd178906f8d58a.js",
+      "path----557518bd178906f8d58a.js.map"
+    ],
+    "component---node-modules-gatsby-plugin-offline-app-shell-js": [
+      "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js",
+      "component---node-modules-gatsby-plugin-offline-app-shell-js-5c4c5a0f7af9dc69d6d7.js.map"
+    ],
+    "component---src-templates-blog-post-js": [
+      "component---src-templates-blog-post-js-461a9616f3a420069950.js",
+      "component---src-templates-blog-post-js-461a9616f3a420069950.js.map"
+    ],
+    "component---src-layouts-index-js": [
+      "component---src-layouts-index-js-ea8630f7ed42d4641aac.js",
+      "component---src-layouts-index-js-ea8630f7ed42d4641aac.js.map"
+    ],
+    "path---index": [
+      "path---index-53ee3f73f3a204e4b677.js",
+      "path---index-53ee3f73f3a204e4b677.js.map"
+    ],
+    "component---src-pages-404-js": [
+      "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
+      "component---src-pages-404-js-4503918ea3a16cfcdb75.js.map"
+    ],
+    "commons": [
+      "commons-33a4ef356bd50d18692a.js",
+      "build-js-styles.css",
+      "commons-33a4ef356bd50d18692a.js.map",
+      "build-js-styles.css.map"
+    ],
+    "path---404-html": [
+      "path---404-html-a0e39f21c11f6a62c5ab.js",
+      "path---404-html-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "path---offline-plugin-app-shell-fallback": [
+      "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js",
+      "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
+    ],
+    "app": [
+      "app-4b840cb1870004fe2722.js",
+      "build-js-styles.css",
+      "app-4b840cb1870004fe2722.js.map",
+      "build-js-styles.css.map"
+    ],
+    "path---world-models": [
+      "path---world-models-4b532d70cc640da12844.js",
+      "path---world-models-4b532d70cc640da12844.js.map"
+    ],
+    "path---404": [
+      "path---404-a0e39f21c11f6a62c5ab.js",
+      "path---404-a0e39f21c11f6a62c5ab.js.map"
+    ]
+  }
+}
