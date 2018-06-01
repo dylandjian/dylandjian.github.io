@@ -54,10 +54,11 @@ class Bio extends React.Component {
         <div
           style={{
             display: "flex",
-            justifyContent: "center"
+            justifyContent: "center",
+            marginBottom: "20px"
           }}
         >
-          <span>
+          <div>
             <a
               href="https://www.linkedin.com/in/dylan-djian/"
               style={{
@@ -72,12 +73,17 @@ class Bio extends React.Component {
                 style={{
                   width: rhythm(1),
                   height: rhythm(1),
-                  outline: "none"
+                  outline: "none",
+                  marginBottom: 0
                 }}
               />
             </a>
-          </span>
-          <span>
+          </div>
+          <div
+            style={{
+              marginLeft: rhythm(0.7)
+            }}
+          >
             <a
               href="https://github.com/dylandjian"
               style={{
@@ -90,14 +96,19 @@ class Bio extends React.Component {
                 src={githubLogo}
                 alt={`Github`}
                 style={{
-                  width: rhythm(1.2),
-                  height: rhythm(1.2),
-                  marginLeft: rhythm(0.5)
+                  width: rhythm(1),
+                  height: rhythm(1),
+                  marginBottom: 0,
+                  marginTop: "2px"
                 }}
               />
             </a>
-          </span>
-          <span>
+          </div>
+          <div
+            style={{
+              marginLeft: rhythm(0.7)
+            }}
+          >
             <a
               href="https://twitter.com/dylandjian"
               style={{
@@ -110,13 +121,14 @@ class Bio extends React.Component {
                 src={twitterLogo}
                 alt={`Twitter`}
                 style={{
-                  width: rhythm(1.2),
-                  height: rhythm(1.2),
-                  marginLeft: rhythm(0.5)
+                  width: rhythm(1),
+                  height: rhythm(1),
+                  marginBottom: 0,
+                  marginTop: "2px"
                 }}
               />
             </a>
-          </span>
+          </div>
         </div>
       </div>
     )
