@@ -10,6 +10,7 @@ import githubLogo from "./github-logo.svg"
 import linkedinLogo from "./linkedin-logo.svg"
 import twitterLogo from "./twitter-logo.svg"
 
+import { OutboundLink } from "gatsby-plugin-google-analytics"
 import { rhythm } from "../utils/typography"
 
 class Bio extends React.Component {
