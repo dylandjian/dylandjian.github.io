@@ -3,6 +3,8 @@ title: World Models applied to Sonic
 date: "2018-05-31T22:12:03.284Z"
 ---
 
+![openai](./open_ai.png)
+
 Open AI lauched a Reinforcement Learning competition called the [Retro Contest](https://contest.openai.com/) on April 5th. The contest lasted over the course of the past 2 months, and the goal was to make the best agent to play the old SEGA Genesis platform game Sonic the Hedgehog. The problem is really simple to understand, yet very **very** hard to resolve. The evaluation of the agent is done on levels that have not been previously seen by the agent, therefore making the competition a Meta Reinforcement Learning problem. I will present how I tried to tackle this problem by applying recently published techniques that have been applied to similar problems (however generally simpler). This article will require a bit of background knowledge in Machine Learning and Python, as I will be referencing [my own implementation](https://github.com/dylandjian/retro-contest-sonic).
 
 ## Introduction
@@ -28,7 +30,7 @@ I chose to implement β-VAE to get a more robust representation of the Sonic lev
 
 Let's take a look at a possible implementation. The architecture follows the one proposed on the paper, except that it has one more layer because the frames taken from the game have been resized to 128x128 (using the "nearest" method) instead of 64x64 in the paper.
 
-```
+```python
 class ConvVAE(nn.Module):
     def __init__(self, input_shape, z_dim):
         super(ConvVAE, self).__init__()
@@ -57,7 +59,7 @@ First, we define our layers. 5 convolutions that are mapped onto 2 linear vector
 
 Now onto the forward pass.
 
-```
+```python
 def encode(self, x):
    h = F.relu(self.conv1(x))
    h = F.relu(self.conv2(h))
@@ -92,7 +94,7 @@ The encode and decode methods do as their name suggest. The reparameterize metho
 
 The final piece is the loss function :
 
-```
+```python
 def loss_fn(recon_x, x, mu, logvar):
     batch_size = x.size(0)
     loss = F.binary_cross_entropy(recon_x, x, size_average=False)
@@ -102,16 +104,14 @@ def loss_fn(recon_x, x, mu, logvar):
     return loss + BETA * kld.sum()
 ```
 
-The loss function for the β-VAE is defined as follows :  
-  
+The loss function for the β-VAE is defined as follows :
+
 $E_{q_\phi(z|x)}[\log p_θ(x|z)] - βD_{KL}(q_{\phi}(z|x)\ ||\ p(z))$
-  
-The left term is the marginal likelihood which measures how close the predicted frame was from the original frame, and the right term in the Kullback–Leibler divergence (or relative entropy) which is a measure of how the predicted frame diverges from the original frame when considered as a probability distribution, under the assumption that $p(z)$ and $q_{\phi}(z|x)$ are parametrised as Gaussians distributions.  
+
+The left term is the marginal likelihood which measures how close the predicted frame was from the original frame, and the right term in the Kullback–Leibler divergence (or relative entropy) which is a measure of how the predicted frame diverges from the original frame when considered as a probability distribution, under the assumption that $p(z)$ and $q\_{\phi}(z|x)$ are parametrised as Gaussians distributions.  
 I chose a β value of 4 in most of my experiments to enforce a better latent representation, despite the potential quality loss on the overall reconstructed image. I also normalized each component of the loss by the number of example in the batch to get a more representative value.
 
 ### Results
-
-
 
 ### Memory Model
 
@@ -119,6 +119,6 @@ I chose a β value of 4 in most of my experiments to enforce a better latent rep
 
 ## References
 
-* [World Models](https://arxiv.org/pdf/1803.10122.pdf) - David Ha & Jürgen Schmidhuber
-* [β-VAE](https://arxiv.org/pdf/1804.03599.pdf) - DeepMind
-* [A tutorial on Mixed Density Networks](https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb) - David Ha
+- [World Models](https://arxiv.org/pdf/1803.10122.pdf) - David Ha & Jürgen Schmidhuber
+- [β-VAE](https://arxiv.org/pdf/1804.03599.pdf) - DeepMind
+- [A tutorial on Mixed Density Networks](https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb) - David Ha
