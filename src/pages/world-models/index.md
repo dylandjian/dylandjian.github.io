@@ -309,11 +309,11 @@ Since I'm not training "online", I did also have a "rotating buffer" that was re
   
 The last component, which is the Controller, is the hardest one to train from what I've experienced. The first thing I did was implement the multiprocessing for the evaluation of a given set of parameters to speed up computation. I also added some "early stopping" mecanism to save computation, such as calculating a moving average of the reward using a certain number of timesteps (300 to 600 timesteps, which is equivalent to between 20s and 40s in game at 15 frames per second), which would make the agent stop if the average reward didn't go above a certain threshold (10 in most of my experiments). I tried using a *curriculum learning* approach by only iterating on the first levels (GreenHillZone Act1 and 2) until a certain score was achieved. On these levels, rewards tends to be easier to get earlier on and the agent should be able to learn the most basic concepts of Sonic such that going right and jumping over obstacles generally is a good idea. After a very few number of attempts, I decided to swap to a random approach, such that the agent would construct a better and more robust vision of the game progressively. However, at the time of writting, I didn't have enough training time to be able to assess if one is better than the other.  
   
-For the hyperparameters of the CMA-ES and the Controller models, I used a population of 80, evaluating 20 of the candidate solutions in parallel by taking the average cumulative reward on 5 rollouts until completion in either time or reward shortage. In the World Models paper, they had more than 1000 generations (with a population of size 64 and averaging on 16 rollouts) before achieving their score on the Car-Racing environment. The maximimum number of generations I could do was around 80 before the submission deadline. From my last submissions, it managed to get around 1800 average scores at most (with one completed level at 8200 ~). However the average of the highest score seem to lay around 3200.
+For the hyperparameters of the CMA-ES and the Controller models, I used a population of 80, evaluating 20 of the candidate solutions in parallel by taking the average cumulative reward on 5 rollouts until completion in either time or reward shortage. In the World Models paper, they had more than 1000 generations (with a population of size 64 and averaging on 16 rollouts) before achieving their score on the Car-Racing environment. The maximum number of generations I could do was around 80 before the submission deadline. From my last submissions, it managed to get around 1800 average scores at most (with one completed level at 8200 ~). However the average of the highest score seem to lay around 3200.
 
 ### Rollout of the agent
 
-The agent plays in the environment with the logic described down below (written in python pseudo-code, look at [this](https://github.com/dylandjian/retro-contest-sonic/blob/master/lib/agent_play.py) for the complete logic).
+The agent plays in the environment with the logic described below (written in python pseudo-code, look at [this](https://github.com/dylandjian/retro-contest-sonic/blob/master/lib/agent_play.py) for the complete logic).
 
 ```python
 
@@ -348,18 +348,19 @@ def rollout(env, vae, lstm, controller):
 
 <br />
 
-The hidden state of the LSTM is only reinitialized after a certain number of frames (the same amount that it used during training). It is also updated during the forward pass, that's why the return of the LSTM prediction isn't used.
+The hidden state of the LSTM is only re-initialized after a certain number of frames (the same amount that it used during training). It is also updated during the forward pass, that's why the return of the LSTM prediction isn't used.
 
 
 ## Results and discussion
 
-All the pieces of the puzzle have been laid down. Let's explore the final results that the model achieved by looking at every component individually.
+All the pieces of the puzzle have now been laid down. Let's explore the final results that the model achieved by looking at every component individually.
 
 ### VAE
 
 The VAE seems to have understood the fact that Sonic is a re-occuring character on all the frames. It has also learnt how to reconstruct the frame pretty well from my observations.
-Here is a sample of 4 frames reconstructed. A higher number of samples can be found
-[here](./test.jpeg)
+Here is a sample of 4 frames reconstructed.
+  
+![](./sample_127.png)
 
 
 
