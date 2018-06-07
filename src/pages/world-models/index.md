@@ -357,11 +357,22 @@ All the pieces of the puzzle have now been laid down. Let's explore the final re
 
 ### VAE
 
-The VAE seems to have understood the fact that Sonic is a re-occuring character on all the frames. It has also learnt how to reconstruct the frame pretty well from my observations.
-Here is a sample of 4 frames reconstructed.
-  
+The VAE seems to have understood the fact that Sonic is a re-occuring character on all the frames. It has also learnt how to reconstruct the frame well from my observations.
+Here is a sample of 4 frames reconstructed.  
+   
 ![](./sample_127.png)
+  
+Since the VAE has a latent space, it is possible to do some linear interpolations between levels, such as the following.  
+  
+![](./sample_traverse.png)
 
+
+### MDN-RNN
+
+The LSTM seems to have also understood some *basic* motions, such that when Sonic is about to fall, then the character will slowly go down, which I find pretty impressive ! The reconstructed images also tends to get blurry as time goes on, which is a good sign that the model is less certain about the "long term" future. However, I believe that the network hasn't been trained for long enough, due to the submission deadline mainly.  
+To create the image, I took the frame on the top left, encoded it to the latent space and concatenated the discrete action for the *move right*. Here is an example (first 4 images are true images, the 4 next are their reconstruction. The LSTM predictions start at the second line, with the first reconstructed frame as input only)
+
+![](./sample_lstm.png)
 
 
 ## References
