@@ -16,7 +16,7 @@ Open AI lauched a Reinforcement Learning competition called the [Retro Contest](
 I started the contest about 3 to 4 weeks ago (*May 10th*), with general knowledge about Machine Learning and Deep Learning as a self thought practitioner and student in software development. My only other experience with a large Reinforcement Learning problem was implementing AlphaGo Zero from scratch, using (mainly) PyTorch. [My article on the subject (coming soon)](https://dylandjian.github.io/alphago-zero/) and [my implementation on Github](https://github.com/dylandjian/superGo).
 I followed the [guidelines](https://contest.openai.com/details) to get started and submitted my first agent using a random policy.  
 When it was time to start thinking about a way to formulate a good answer to the problem, a few ideas came to my mind : Proximal Policy Optimization (*PPO*), Deep-Q Networks (*DQN*) and it's variations or perhaps the Trust Region Policy Optimization (*TRPO*) algorithm. However, these algorithm have already proven their worth and are known performers. I wanted to try something different even though it might not give any successful results.  
-I had read the paper about **World Models** a few weeks prior to starting the contest. I had thought about a similar approach before reading the paper, but never actually took the time to experiment with it. I figured it was the perfect time to apply this really interesting approach to a concrete problem.
+I had read the paper about **World Models** a few weeks prior to starting the contest. I had thought about a similar approach before reading the paper, but never actually took the time to experiment with it myself. I figured it was the perfect time to apply this really interesting approach to a concrete problem.
 
 ## World Models
 
@@ -178,7 +178,7 @@ class LSTM(nn.Module):
 <br/>
 
 Again, the definition of the layers comes first. Before going through the LSTM layer(s), the latent encoded vector $z_t$ passes through a linear layer to help the model makes it's own non-linear representation on top of the latent representation.
-After that, it is mapped onto the LSTM layers, which will output a time-encoded vector. This vector will itself be mapped onto the 3 layers / components of our MDN, which are the probability for each mixture and then the $μ$ and $σ$ of the associated distributions.  
+After that, it is mapped onto the LSTM layers, which will output a time-encoded vector. This vector will itself be mapped onto the 3 components of our MDN, which are the probability for each mixture, the $μ$ and the $σ$ of the associated distributions.  
 As you can probably see, the output shape of the MDN is not (hidden\_units, n\_gaussians) as it would logically seem to be ([like in hardmaru's very good tutorial on the subject](https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb)). I tried it, and the results didn't seem to be as good as to output the direct distribution of the predicted Gaussian mixture.  
   
 The forward pass is relatively straight forward (**!**)
@@ -201,7 +201,7 @@ def forward(self, x):
 
 <br />
 
-The hidden state is updated, the probabilities are calculated with a softmax (sum of the outputs is equal to 1) and the $σ$ is exponentiated. All these 3 vectors are shaped to correspond to (batch\_size, sequence\_length, n\_gaussians, latent\_dimension).  
+The hidden state is updated, the probabilities are calculated with a softmax (to transform the output to a probability distribution that sums to 1) and the $σ$ is exponentiated. All these 3 vectors are shaped to correspond to (batch\_size, sequence\_length, n\_gaussians, latent\_dimension).  
   
 Then is the definition of our loss function.
 
@@ -217,7 +217,7 @@ def mdn_loss_function(out_pi, out_sigma, out_mu, y):
 
 <br/>
 
-The predicted vector is converted into a multivariate Gaussian distribution. It is then evaluated for the true latent vector of the target (which is the latent vector of the next frame $z_{t+1}$ in our case), then the probability vector for each mixture is applied. Finally, the mixtures are summed, a logarithm (with a small constant to avoid -$\infty$) is applied and this value is then normalized by the batch\_size to give the final loss value.   
+The predicted vector is converted into a multivariate Gaussian distribution. It is evaluated for the true latent vector of the target (which is the latent vector of the next frame $z_{t+1}$) and then the probability vector for each mixture is applied. Finally, the mixtures are summed, a logarithm (with a small constant to avoid -$\infty$) is applied and this value is then normalized by the batch\_size to give the final loss value.   
 
 <center>. . .</center>
 
@@ -227,14 +227,14 @@ The predicted vector is converted into a multivariate Gaussian distribution. It 
 
 The controller model is in charge of taking actions in the environment. In the paper, it is a simple neural network with a single linear layer that maps the concatenation of the current latent representation of the frame $z_t$ and the hidden state and cell of the LSTM to an action (depending on the environment, the output shape might be a bit different).   
     
-I tried different approaches to adapt the model's output to the Sonic environment, such as using a discrete value with a softmax operation at the end, which didn't seem to work very well. The best method was to predict a sigmoid value for every independant button of the SEGA controller that has an impact on the game. The **UP** button has little to no use, same goes for **A** and **C** which do the same actions as **B**, as shown in [this wiki](https://strategywiki.org/wiki/Sonic_the_Hedgehog/Controls). The action was taken by pushing all the buttons that had an activation that was superior to a certain threshold (0.5 in my case).  
+I tried different approaches to adapt the model's output to the Sonic environment, such as using a discrete value with a softmax operation at the end, which didn't seem to work very well. I also tried outputing a hyperbolic tangent value ($[-1,1]$) and cut in the number of possiThe best method was to predict a sigmoid value for every independant button of the SEGA controller that has an impact on the game. The **UP** button has little to no use, same goes for **A** and **C** which do the same actions as **B**, as shown in [this wiki](https://strategywiki.org/wiki/Sonic_the_Hedgehog/Controls). The action was taken by pushing all the buttons that had an activation that was superior to a certain threshold (0.5 in my case).  
    
 The method that was used in the paper to train the agent in the environment is an evolutionary algorithm called the Covariance Matrix Adaptation Evolution Strategy (*CMA-ES*). [Here is a really great visual guide written by hardmaru](http://blog.otoro.net/2017/10/29/visual-evolution-strategies/). This algorithm has the particularity of having a dynamic standard deviation which enables the search space to adaptively increase or decrease depending on the situation. They used this evolutionary technique in order to find the set of parameters that would make the agent perform best in the environment. In our case, the fitness function (which is responsible for the calculation of how well an agent is doing during an episode) is defined by OpenAI with two components : a horizontal offset, and a completion bonus.
 To make sure that outliers don't make the algorithm converge towards a local minima, a fitness shaping function is applied to the fitness score of each set of parameters.
 
 ### Code
 
-After a few (*unsuccessful*) attempts with a single layer, I tried using a more complex controller model (without going to deep because the search space shouldn't go much further than 10 000 parameters at most, otherwise the resources needed to find a good set of parameters would be tremendous).
+After a few attempts with a single layer, I tried using a more complex controller model (without going to deep because the search space shouldn't go much further than 10 000 parameters at most, otherwise the resources needed to find a good set of parameters would be tremendous).
 
 
 ```python
@@ -301,15 +301,15 @@ I chose to store the data in chunk of 2500 tuples of (frame, action, reward) in 
 
 There are a few ways to approach the training procedure. I chose to train each model separately. I used the optimizer Adam with a learning rate of $10^{-3}$ for both the VAE and the LSTM.  
   
-I started training the VAE using a 200 dimensions latent space, a batch\_size of 300 frames (128 x 128 x 3) and a $β$ value of 4 in most of my experiments to enforce a better latent representation $z$, despite the potential quality loss on the overall reconstructed image. It lasted for approximately 2 days, which led to approximately 400k ~ batch iterations.  
+I started training the VAE using a 200 dimensions latent space, a batch\_size of 300 frames (128 x 128 x 3) and a $β$ value of 4 in most of my experiments to enforce a better latent representation $z$, despite the potential quality loss on the overall reconstructed image. It lasted for approximately 2 days, which led to 400k ~ batch iterations.  
   
-On the other hand, I also started training the LSTM. I tried to fiddle with the hyper parameters of the model, but the last version I have is using 1 LSTM layer, 5 Gaussians, 1024 hidden units, and 1024 units in the first linear layer. I also used a sequence of 500 latent vector $z$ to be able to capture more of the time dependency. I only managed to train it for 14 hours ~ (submission deadline) which approximately represents 40k sequences of 500 latent vectors. To be able to create the target vector, I shifted the target by 1 frame to the left, and duplicated the last frame. I tried using a larger shift without duplication, but the results weren't as great from the (little) time I had to experience with it.  
+On the other hand, I also started training the LSTM. I tried to fiddle with the hyper parameters of the model, but the last version I have is using 1 LSTM layer, 5 Gaussians, 1024 hidden units, and 1024 units in the first linear layer. I also used a sequence of 500 latent vector $z$ to be able to capture more of the time dependency. I only managed to train it for 14 hours ~ (submission deadline) which approximately represents 40k sequences of 500 latent vectors. To be able to create the target vector, I shifted the target by 1 frame to the left, and duplicated the last frame. I tried using a larger shift without duplication, but the results weren't as great from the (*little*) time I had to experience with it.  
 
-Since I'm not training "online", I did also have a "rotating buffer" that was refreshed every few epochs to replace a small portion of the dataset (between 5 and 10% at most).  
+Since I'm not training "online", I did also have a "rotating buffer" that was refreshed every few epochs to replace a small portion of the dataset (between 5 and 10% at most). Check [this piece of code](https://github.com/dylandjian/retro-contest-sonic/blob/master/lib/train_utils.py) for more details.  
   
-The last component, which is the Controller, is the hardest one to train from what I've experienced. The first thing I did was implement the multiprocessing for the evaluation of a given set of parameters to speed up computation. I also added some "early stopping" mecanism to save computation, such as calculating a moving average of the reward using a certain number of timesteps (300 to 600 timesteps, which is equivalent to between 20s and 40s in game at 15 frames per second), which would make the agent stop if the average reward didn't go above a certain threshold (10 in most of my experiments). I tried using a *curriculum learning* approach by only iterating on the first levels (GreenHillZone Act1 and 2) until a certain score was achieved. On these levels, rewards tends to be easier to get earlier on and the agent should be able to learn the most basic concepts of Sonic such that going right and jumping over obstacles generally is a good idea. After a very few number of attempts, I decided to swap to a random approach, such that the agent would construct a better and more robust vision of the game progressively. However, at the time of writting, I didn't have enough training time to be able to assess if one is better than the other.  
+The last component, which is the Controller, is the hardest one to train from what I've experienced. The first thing I did was implement the multiprocessing for the evaluation of a given set of parameters to speed up computation. I also added some "early stopping" mechanism to save computation, such as calculating a moving average of the reward using a certain number of timesteps (300 to 600 timesteps, which is equivalent to between 20s and 40s in game at 15 frames per second), which would make the agent stop if the average reward didn't go above a certain threshold (10 in most of my experiments). I tried using a *curriculum learning* approach by only iterating on the first levels (GreenHillZone Act 1 and 2) until a certain score was achieved. On these levels, rewards tends to be easier to get earlier on and the agent should be able to learn the most basic concepts of Sonic such that going right and jumping over obstacles generally is a good idea. After a very few number of attempts, I decided to swap to a random approach, such that the agent would construct a better and more robust vision of the game progressively. However, at the time of writting, I didn't have enough training time to be able to assess if one is better than the other.  
   
-For the hyperparameters of the CMA-ES and the Controller models, I used a population of 80, evaluating 20 of the candidate solutions in parallel by taking the average cumulative reward on 5 rollouts until completion in either time or reward shortage. In the World Models paper, they had more than 1000 generations (with a population of size 64 and averaging on 16 rollouts) before achieving their score on the Car-Racing environment. The maximum number of generations I could do was around 80 before the submission deadline. From my last submissions, it managed to get around 1800 average scores at most (with one completed level at 8200 ~). However the average of the highest score seem to lay around 3200.
+For the hyperparameters of the CMA-ES and the Controller models, I used a population of 80, evaluating 20 of the candidate solutions in parallel by taking the average cumulative reward on 5 rollouts until completion in either time or reward shortage. In the World Models paper, they had more than 1000 generations (with a population of size 64 and averaging on 16 rollouts) before achieving their score on the Car-Racing environment. The maximum number of generations I could do was around 80 before the submission deadline. 
 
 ### Rollout of the agent
 
@@ -348,10 +348,12 @@ def rollout(env, vae, lstm, controller):
 
 <br />
 
-The hidden state of the LSTM is only re-initialized after a certain number of frames (the same amount that it used during training). It is also updated during the forward pass, that's why the return of the LSTM prediction isn't used.
+The hidden state of the LSTM is only re-initialized after a certain number of frames (the same amount that it used during training). It is also updated during the forward pass which is the reason why the return of the LSTM prediction isn't used.
 
+<center>. . .</center>
+  
 
-## Results and discussion
+## Results
 
 All the pieces of the puzzle have now been laid down. Let's explore the final results that the model achieved by looking at every component individually.
 
@@ -369,16 +371,48 @@ Since the VAE has a latent space, it is possible to do some linear interpolation
 
 ### MDN-RNN
 
-The LSTM seems to have also understood some *basic* motions, such that when Sonic is about to fall, then the character will slowly go down, which I find pretty impressive ! The reconstructed images also tends to get blurry as time goes on, which is a good sign that the model is less certain about the "long term" future. However, I believe that the network hasn't been trained for long enough, due to the submission deadline mainly.  
-To create the image, I took the frame on the top left, encoded it to the latent space and concatenated the discrete action for the *move right*. Here is an example (first 4 images are true images, the 4 next are their reconstruction. The LSTM predictions start at the second line, with the first reconstructed frame as input only)
+The LSTM seems to have also understood some *basic* motions, such that when Sonic is about to fall the character will slowly go down, which I find pretty impressive ! The reconstructed images also tends to get blurry as time goes on, which is a good sign that the model is less certain about the "long term" future. However, I believe that the network hasn't been trained for long enough, mainly due to the submission deadline.  
+To create the image, I took the frame on the top left, encoded it to the latent space and concatenated the discrete action for the *move right*. Here is an example (first 4 images are true images, the 4 next are their reconstructions. The LSTM predictions start at the second line, with the first reconstructed frame as input).
 
 ![](./sample_lstm.png)
 
 
-## References
+### Controller
 
-- [World Models](https://arxiv.org/pdf/1803.10122.pdf) - David Ha & Jürgen Schmidhuber
-- [β-VAE](https://arxiv.org/pdf/1804.03599.pdf) - DeepMind
-- [A tutorial on Mixed Density Networks](https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb) - David Ha
+The results of the controller are ok-*ish* and what I would call promising as of now considering how *little* it has been trained. The variance of the agents results is still **very** high. However, from what I could observe, the best agents kept improving over time while the average score didn't increase as much (although I didn't make my training script record the average score per level to compare them as time goes on).   
+   
+From analysing the generated footages, it seems that the controller has understood that going right and jumping over obstacles when stuck is generally a good idea, and on some levels it also seems that it has understood what an enemy unit is and a few other details. The overall gameplay looks promising when the level is not too complicated. Also, it is noticeable that this behavior has been heavily influenced by the "early-stopping" mechanism, because it doesn't really allow Sonic to go left and explore, since controllers that do that will get shut down relatively early on and therefore have a low reward, so the CMA-ES won't encourage this behavior (to save computation time).   
+  
+The agent that achieves the highest score in any of the levels while training is saved. The best agent at this time did around 4500 score at generation 150 ~. It achieves 1347 score on average over all the Sonic levels of the 3 games. Here are some footages using this agent **without** training on these levels specifically for the videos. In the first video Sonic achieves 8560 score, and in the second video 143.
+
+`video: https://www.youtube.com/watch?v=w5gbHSfbiK4`
+`video: https://www.youtube.com/watch?v=w5gbHSfbiK4`
+
+
+### Submission results
+
+Sadly, I didn't have enough time to experiment with a good submission technique. Also, the controllers were still evolving and were only around generation 80 ~ when I did my final submission. I didn't submit the best agent either, I only used the saved state of the latest CMA-ES and generated new controllers on the fly from the saved parameters. Since the results are based on the average score of the agent over the 1 million timesteps, what I did was that if an agent generated by the CMA-ES had more than 2000 score, it would play again with the same agent until the end of the evaluation instead of generating new ones. This achieved around 1800 scores, with one of the levels being completed at 8100 ~  score. The average of the highest scores on evaluation levels would have laid around 2500 to 4000. I sadly didn't have enough time to submit the overall best generated agent without any training at all on the evaluation levels, but I believe that it would still maintain a pretty good average score and behavior.
+
+## Discussion
+
+There are a few points that could improve the performances of the agent. The first one is the VAE. There are models that have shown better results when encoding to a latent space, such as Generative Adversarial Networks (*GANs*) and its variants. Also, in my implementation, I made some hyperparameters choices that were certainly suboptimal. More time would have definitely helped to get sharper results and make better implementation choices. The fact that I used the "early stopping" mechanism made Sonic learn a forced behavior instead of its own, which lead to different results. I also suspect the fitness shaping function to encourages bad behavior in some aspect, but I need to investigate this further.  I would have liked to use the natural environment without any human constraints. Despite the average results shown on the contest leaderboard, I still believe that Unsupervised methods such as this one are really promising for the future of Reinforcement Learning and Machine Learning in general.
+
 
 ## Acknowledgements
+
+Thanks to OpenAI for hosting such a great competition, I hope that there will be many more. Also thanks for the help you provided on the Discord of the contest !   
+I would like to thank my school AI Association for helping me to get access to much greater computation resources that I have at home (thanks Alain for taking the time to help me get setup). Also a huge thanks to .... for reviewing this article. And a final thanks to my cat *Milky* for helping me stay awake late at night.
+
+## References
+
+- [The code for this article](https://github.com/dylandjian/retro-contest-sonic)
+- [Retro Contest](https://contest.openai.com/) - OpenAI
+- [Variational Autoencoder Tutorial](https://jaan.io/what-is-variational-autoencoder-vae-tutorial/) - Jaan Altosaar
+- [Long Short Term Memory Networks article](http://colah.github.io/posts/2015-08-Understanding-LSTMs/) - Christopher Olah
+- [Mixed Density Networks tutorial](https://mikedusenberry.com/mixture-density-networks) - Mike Dusenberry
+- [Another tutorial on Mixed Density Networks](https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb) - David Ha
+- [Visual Guide to Evolution Strategies](http://blog.otoro.net/2017/10/29/visual-evolution-strategies/) - David Ha
+- [World Models](https://arxiv.org/pdf/1803.10122.pdf) - David Ha, Jürgen Schmidhuber
+- [β-VAE](https://arxiv.org/pdf/1804.03599.pdf) - DeepMind
+- [PyTorch](https://github.com/pytorch/) - Adam Paszke, Sam Gross, Soumith Chintala, Gregory Chanan
+- [pycma](https://github.com/CMA-ES/pycma) - Nikolaus Hansen

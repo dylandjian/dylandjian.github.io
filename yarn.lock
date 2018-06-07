@@ -50,6 +50,10 @@
   version "7.0.65"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.65.tgz#c160979ff66c4842adc76cc181a11b5e8722d13d"
 
+"@types/node@^9.6.4":
+  version "9.6.20"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-9.6.20.tgz#b59a1bd357ae2df7d44d5ac98e9b64eb96ea1fef"
+
 "@types/react-router-dom@^4.2.2":
   version "4.2.6"
   resolved "https://registry.yarnpkg.com/@types/react-router-dom/-/react-router-dom-4.2.6.tgz#9f7eb3c0e6661a9607d878ff8675cc4ea95cd276"
@@ -3952,6 +3956,14 @@ gatsby-remark-copy-linked-files@^1.5.31:
     probe-image-size "^4.0.0"
     unist-util-visit "^1.1.1"
 
+gatsby-remark-embed-video@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/gatsby-remark-embed-video/-/gatsby-remark-embed-video-1.3.0.tgz#96ec83ce022c02f7af0e76e2c51514cc3d2edd17"
+  dependencies:
+    "@types/node" "^9.6.4"
+    get-video-id "^2.1.7"
+    unist-util-visit "^1.1.3"
+
 gatsby-remark-images@^1.5.61:
   version "1.5.65"
   resolved "https://registry.yarnpkg.com/gatsby-remark-images/-/gatsby-remark-images-1.5.65.tgz#8b36342363f13ef0c80656804f22a22df87dd329"
@@ -4206,6 +4218,10 @@ get-proxy@^1.0.1:
   dependencies:
     rc "^1.1.2"
 
+get-src@^1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/get-src/-/get-src-1.0.1.tgz#ca11dbe4a93c7f3aa85cec95fcb0b2dfaa9539ee"
+
 get-stdin@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/get-stdin/-/get-stdin-4.0.1.tgz#b968c6b0a04384324902e8bf1a5df32579a450fe"
@@ -4217,6 +4233,12 @@ get-stream@^3.0.0:
 get-value@^2.0.3, get-value@^2.0.6:
   version "2.0.6"
   resolved "https://registry.yarnpkg.com/get-value/-/get-value-2.0.6.tgz#dc15ca1c672387ca76bd37ac0a395ba2042a2c28"
+
+get-video-id@^2.1.7:
+  version "2.1.7"
+  resolved "https://registry.yarnpkg.com/get-video-id/-/get-video-id-2.1.7.tgz#850a700bfe4d8986a88aa52fab1bbbe85b08c7ed"
+  dependencies:
+    get-src "^1.0.1"
 
 getpass@^0.1.1:
   version "0.1.7"
@@ -10242,7 +10264,7 @@ unist-util-visit-children@^1.0.0:
   version "1.1.2"
   resolved "https://registry.yarnpkg.com/unist-util-visit-children/-/unist-util-visit-children-1.1.2.tgz#bd78b53db9644b9c339ac502854f15471f964f5b"
 
-unist-util-visit@^1.0.0, unist-util-visit@^1.1.0, unist-util-visit@^1.1.1, unist-util-visit@^1.3.0:
+unist-util-visit@^1.0.0, unist-util-visit@^1.1.0, unist-util-visit@^1.1.1, unist-util-visit@^1.1.3, unist-util-visit@^1.3.0:
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/unist-util-visit/-/unist-util-visit-1.3.1.tgz#c019ac9337a62486be58531bc27e7499ae7d55c7"
   dependencies:
