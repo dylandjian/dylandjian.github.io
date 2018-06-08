@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dylan's Blog]]></title><description><![CDATA[A technical blog on Machine Learning]]></description><link>https://dylandjian.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 08 Jun 2018 09:17:03 GMT</lastBuildDate><item><title><![CDATA[World Models applied to Sonic]]></title><description><![CDATA[Open AI lauched a Reinforcement Learning competition called the  Retro Contest  on April 5th. The contest lasted over the course of the past…]]></description><link>https://dylandjian.github.io/world-models/</link><guid isPermaLink="false">https://dylandjian.github.io/world-models/</guid><pubDate>Wed, 06 Jun 2018 22:12:03 GMT</pubDate><content:encoded>&lt;br/&gt;
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Dylan's Blog]]></title><description><![CDATA[A technical blog on Machine Learning]]></description><link>https://dylandjian.github.io</link><generator>RSS for Node</generator><lastBuildDate>Fri, 08 Jun 2018 14:05:07 GMT</lastBuildDate><item><title><![CDATA[World Models applied to Sonic]]></title><description><![CDATA[Open AI lauched a Reinforcement Learning competition called the  Retro Contest  on April 5th. The contest lasted over the course of the past…]]></description><link>https://dylandjian.github.io/world-models/</link><guid isPermaLink="false">https://dylandjian.github.io/world-models/</guid><pubDate>Wed, 06 Jun 2018 22:12:03 GMT</pubDate><content:encoded>&lt;br/&gt;
 &lt;p&gt;
   &lt;a
     class=&quot;gatsby-resp-image-link&quot;
@@ -134,43 +134,7 @@ I chose to implement the &lt;a href=&quot;https://arxiv.org/pdf/1804.03599.pdf&q
 &lt;h3&gt;Concept&lt;/h3&gt;
 &lt;p&gt;The &lt;strong&gt;M&lt;/strong&gt;emory Model is reponsible for the representation of the changes in space through time caused by an action. A popular model for time series modelling is called a Recurrent Neural Network (&lt;em&gt;RNN&lt;/em&gt;). In order to represent time, this type of model uses it’s own predictions as input source during the forward pass, hence the term &lt;em&gt;recurrent&lt;/em&gt;. This is illustrated in the figure down below.&lt;/p&gt;
 &lt;br/&gt;
-&lt;p&gt;
-  &lt;a
-    class=&quot;gatsby-resp-image-link&quot;
-    href=&quot;/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-5fa43.png&quot;
-    style=&quot;display: block&quot;
-    target=&quot;_blank&quot;
-    rel=&quot;noopener&quot;
-  &gt;
-  
-  &lt;span
-    class=&quot;gatsby-resp-image-wrapper&quot;
-    style=&quot;position: relative; display: block; ; max-width: 590px; margin-left: auto; margin-right: auto;&quot;
-  &gt;
-    &lt;span
-      class=&quot;gatsby-resp-image-background-image&quot;
-      style=&quot;padding-bottom: 26.274944567627497%; position: relative; bottom: 0; left: 0; background-image: url(&apos;data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAFCAYAAABFA8wzAAAACXBIWXMAAB7CAAAewgFu0HU+AAABWklEQVQY02NgAII5lasnzCpfqQlil0U3MhZH1jGC2J1Z0zRmV66cDmL35Mw0mlu1ehKIPblooRNQvB3E7iuYxQqiZ5YvD55VsaIRxBbwdPM01lDXkAOy2RmQgLmJOa+DtaMCiG1nZcfraOMkD2I72TkLOFg7yCKrdXFwFXK2c5ZhKGnIjth/aeObNXvnTwYZ+P//fwYjcz0BkKIDVzY1Hbq6+W3rxCrL9QcW9R6+vvV5Q0+Z+aYjS+ccvLr5XteMBgOgMg45BWmJbSdWbDl+e8cDBiBDZOH6/sQ1e+aYgAyZtbyD0cHNigXEXrlzltnSzZOSV+1ZIDBnVa/Vsi2TE9bsX8I3b02fA1A8ZvWeBXxAZYymtlasC9dP8Fy7e2YM2LmJjQuivbOnSIDY0dVz4N4w9q8QAcrFg72U2CaV3LwIrCGocIpKQsOCEBA7pboNbHlU1Vz9uLr5gQBjMX7mwAMnSgAAAABJRU5ErkJggg==&apos;); background-size: cover; display: block;&quot;
-    &gt;
-      &lt;img
-        class=&quot;gatsby-resp-image-image&quot;
-        style=&quot;width: 100%; height: 100%; margin: 0; vertical-align: middle; position: absolute; top: 0; left: 0; box-shadow: inset 0px 0px 0px 400px white;&quot;
-        alt=&quot;rnn&quot;
-        title=&quot;&quot;
-        src=&quot;/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-fb8a0.png&quot;
-        srcset=&quot;/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-1a291.png 148w,
-/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-2bc4a.png 295w,
-/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-fb8a0.png 590w,
-/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-526de.png 885w,
-/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-fa2eb.png 1180w,
-/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-08f6a.png 1770w,
-/static/RNN-unrolled-34a870b0e60d513e7153b3f27fa66786-5fa43.png 2706w&quot;
-        sizes=&quot;(max-width: 590px) 100vw, 590px&quot;
-      /&gt;
-    &lt;/span&gt;
-  &lt;/span&gt;
-  
-  &lt;/a&gt;
-    &lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://colah.github.io/posts/2015-08-Understanding-LSTMs/img/RNN-unrolled.png&quot; alt=&quot;rnn&quot;&gt;&lt;/p&gt;
 &lt;br /&gt;
 &lt;p&gt;However, Vanilla RNNs have several shortcomings. The first one is that they tend to struggle to model long term dependencies, since the context can sometimes be quite far back in the sequence. The second issue (which is directly correlated to the first one) is the vanishing gradient problem, which is caused by the backpropagation algorithm applied to RNNs, called backpropagation through time (&lt;em&gt;BPTT&lt;/em&gt;). Several techniques have addressed these issues such as the Rectified Linear Unit activation function (&lt;em&gt;ReLU&lt;/em&gt;), gradient clipping or the Gated Recurrent Unit (&lt;em&gt;GRU&lt;/em&gt;).&lt;br&gt;
 In the &lt;strong&gt;World Model&lt;/strong&gt; paper, the authors decided to use a Long Short Term Memory Network (&lt;em&gt;LSTM&lt;/em&gt;) instead. This model has been specifically designed to model long term dependencies and overcome these issues thanks to a specific gating mechanism that I won’t explain here, but &lt;a href=&quot;http://colah.github.io/posts/2015-08-Understanding-LSTMs/&quot;&gt;this article explains the key ideas quite well&lt;/a&gt;.
