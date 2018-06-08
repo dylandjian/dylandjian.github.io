@@ -1,2 +1,0 @@
-webpackJsonp([0xe181288bf5d2],{397:function(e,o){e.exports={data:{site:{siteMetadata:{title:"Sulo's Blog",author:"Dylan Djian"}},markdownRemark:{id:"/home/dylan/Desktop/blog/src/pages/world-models/index.md absPath of file >>> MarkdownRemark",html:"<p>Coming soon.</p>",frontmatter:{title:"World Models applied to Sonic",date:"June 03, 2018"}}},pathContext:{slug:"/world-models/",previous:{fields:{slug:"/alphago-zero/"},frontmatter:{title:"AlphaGo Zero demystified"}},next:null}}}});
-//# sourceMappingURL=path---world-models-4b532d70cc640da12844.js.map

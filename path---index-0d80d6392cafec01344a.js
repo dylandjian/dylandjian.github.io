@@ -1,2 +1,0 @@
-webpackJsonp([0x81b8806e4260],{514:function(e,t){e.exports={data:{site:{siteMetadata:{title:"Dylan's Blog"}},allMarkdownRemark:{edges:[{node:{excerpt:"Coming soon.",fields:{slug:"/world-models/"},frontmatter:{date:"03 June, 2018",title:"World Models applied to Sonic"}}},{node:{excerpt:"Coming soon.",fields:{slug:"/alphago-zero/"},frontmatter:{date:"31 May, 2018",title:"AlphaGo Zero demystified"}}}]}},pathContext:{}}}});
-//# sourceMappingURL=path---index-0d80d6392cafec01344a.js.map
