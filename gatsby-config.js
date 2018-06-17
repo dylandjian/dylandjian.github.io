@@ -1,8 +1,8 @@
 module.exports = {
 	siteMetadata: {
-		title: "Dylan's Blog",
+		title: "Dylan Djian's Blog",
 		author: "Dylan Djian",
-		description: "A technical blog on Machine Learning",
+		description: "My personal blog on learning and implementing Machine Learning",
 		siteUrl: "https://dylandjian.github.io"
 	},
 	pathPrefix: "/",

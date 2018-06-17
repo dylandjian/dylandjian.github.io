@@ -13,7 +13,7 @@ Open AI lauched a Reinforcement Learning competition called the [Retro Contest](
 
 ## Introduction
 
-I started the contest about 3 to 4 weeks ago (*May 10th*), with general knowledge about Machine Learning and Deep Learning as a self taught practitioner and student in software development. My only other experience with a large Reinforcement Learning problem was implementing AlphaGo Zero from scratch, using (mainly) PyTorch. [My article on the subject (coming soon)](https://dylandjian.github.io/alphago-zero/) and [my implementation on Github](https://github.com/dylandjian/superGo).
+I started the contest about 3 to 4 weeks ago (*May 10th*), with general knowledge about Machine Learning and Deep Learning as a self taught practitioner and student in software development. My only other experience with a large Reinforcement Learning problem was implementing AlphaGo Zero from scratch, using (mainly) PyTorch. [My article on the subject](https://dylandjian.github.io/alphago-zero/) and [my implementation on Github](https://github.com/dylandjian/superGo).
 I followed the [guidelines](https://contest.openai.com/details) to get started and submitted my first agent using a random policy.  
 When it was time to start thinking about a way to formulate a good answer to the problem, a few ideas came to my mind : Proximal Policy Optimization (*PPO*), Deep-Q Networks (*DQN*) and it's variations or perhaps the Trust Region Policy Optimization (*TRPO*) algorithm. However, these algorithm have already proven their worth and are known performers. I wanted to try something different even though it might not give any successful results.  
 I read the paper about [**World Models**](https://arxiv.org/pdf/1803.10122.pdf) a few weeks prior to starting the contest. I had thought about a similar approach before reading the paper, but never actually took the time to experiment with it myself. I figured it was the perfect time to apply this really interesting approach to a concrete problem.
@@ -178,8 +178,7 @@ class LSTM(nn.Module):
 <br/>
 
 Again, the definition of the layers comes first. Before going through the LSTM layer(s), the latent encoded vector $z_t$ passes through a linear layer to help the model makes it's own non-linear representation on top of the latent representation.
-After that, it is mapped onto the LSTM layers, which will output a time-encoded vector. This vector will itself be mapped onto the 3 components of our MDN, which are the probability for each mixture, the mean $μ$ and the variance $σ^2$ of the associated distributions.  
-As you can probably see, the output shape of the MDN is not (*hidden\_units, n\_gaussians*) as it would logically seem to be ([like in hardmaru's very good tutorial on the subject](https://github.com/hardmaru/pytorch_notebooks/blob/master/mixture_density_networks.ipynb)). I tried it, and the results didn't seem to be as good as to output the direct distribution of the predicted Gaussian mixture.  
+After that, it is mapped onto the LSTM layers, which will output a time-encoded vector. This vector will itself be mapped onto the 3 components of our MDN, which are the probability, the mean $μ$ and the variance $σ$ for each value of each mixture.  
   
 The forward pass is relatively straight forward (**!**)
 
@@ -201,7 +200,7 @@ def forward(self, x):
 
 <br />
 
-The hidden state is updated, the probabilities are calculated with a softmax (to transform the output to a probability distribution that sums to 1) and the variance $σ^2$ is exponentiated. All these 3 vectors are shaped to correspond to (*batch\_size, sequence\_length, n\_gaussians, latent\_dimension*).  
+The hidden state is updated, the probabilities are calculated with a softmax (to transform the output to a probability distribution that sums to 1) and the variance $σ$ is exponentiated. All these 3 vectors are shaped to correspond to (*batch\_size, sequence\_length, n\_gaussians, latent\_dimension*).
   
 Then is the definition of our loss function.
 
@@ -217,7 +216,8 @@ def mdn_loss_function(out_pi, out_sigma, out_mu, y):
 
 <br/>
 
-The predicted vector is converted into a multivariate Gaussian distribution. It is evaluated for the true latent vector of the target (which is the latent vector of the next frame $z_{t+1}$) and then the probability vector for each mixture is applied. Finally, the mixtures are summed, a logarithm (with a small constant to avoid -$\infty$) is applied and this value is then normalized by the *batch\_size* to give the final loss value.   
+The predicted vector is converted into a multivariate Gaussian distribution. It is evaluated for the true latent vector of the target (which is the latent vector of the next frame $z_{t+1}$) and then the probability vector for each mixture is applied. Finally, the mixtures are summed, a logarithm (with a small constant to avoid -$\infty$) is applied and this value is then normalized by the *batch\_size* to give the final loss value.  
+However, this is not numerically stable (logarithm of softmax), but in the paper the correlation parameter $\rho$ is not modeled therefore it is possible to implement a version that is numerically stable.
 
 <center>. . .</center>
 
@@ -303,7 +303,8 @@ There are a few ways to approach the training procedure. I chose to train each m
   
 I started training the VAE using a 200 dimensions latent space, a *batch\_size* of 300 frames (128 x 128 x 3) and a $β$ value of 4 in most of my experiments to enforce a better latent representation $z$, despite the potential quality loss on the overall reconstructed image. It lasted for approximately 2 days, which led to 400k ~ batch iterations.  
   
-On the other hand, I also started training the LSTM. I tried to fiddle with the hyper parameters of the model, but the last version I have is using 1 LSTM layer, 8 Gaussians, 1024 hidden units, and 1024 units in the first linear layer. I also used a sequence of 500 latent vector $z$ to be able to capture more of the time dependency. I only managed to train it for 14 hours ~ (submission deadline) which approximately represents 40k sequences of 500 latent vectors. To be able to create the target vector, I shifted the target by 1 frame to the left, and duplicated the last frame. I tried using a larger shift without duplication, but the results weren't as great from the (*little*) time I had to experiment with it.  
+On the other hand, I also started training the LSTM. I tried to fiddle with the hyper parameters of the model, but the last version I have is using 1 LSTM layer, 8 Gaussians, 1024 hidden units, and 1024 units in the first linear layer. I also used a sequence of 500 latent vector $z$ to be able to capture more of the time dependency. I only managed to train it for 14 hours ~ (submission deadline) which approximately represents 40k sequences of 500 latent vectors. To be able to create the target vector, I shifted the target by 1 frame to the left, and duplicated the last frame. I tried using a larger shift without duplication, but the results weren't as great from the (*little*) time I had to experiment with it.   
+Also, instead of loading the raw frames into GPU memory, the $\mu$ and $\sigma$ of each frame is stored and new latent representations are sampled while constructing training batches.
 
 Since I'm not training "online", I did also have a "rotating buffer" that was refreshed every few epochs to replace a small portion of the dataset (between 5 and 10% at most). Check [this piece of code](https://github.com/dylandjian/retro-contest-sonic/blob/master/lib/train_utils.py) for more details.  
   
