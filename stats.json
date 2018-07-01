@@ -1,8 +1,8 @@
 {
   "assetsByChunkName": {
     "path---alphago-zero": [
-      "path---alphago-zero-863373bfbff62facda8f.js",
-      "path---alphago-zero-863373bfbff62facda8f.js.map"
+      "path---alphago-zero-02c5ec8be71740cc9260.js",
+      "path---alphago-zero-02c5ec8be71740cc9260.js.map"
     ],
     "component---src-pages-index-js": [
       "component---src-pages-index-js-92b3c687d8528296d1ad.js",
@@ -25,8 +25,8 @@
       "component---src-layouts-index-js-5b0ef7f62aad5eeb32a7.js.map"
     ],
     "path---index": [
-      "path---index-349381ae37cd4e213075.js",
-      "path---index-349381ae37cd4e213075.js.map"
+      "path---index-c2a68ee60387d353ffb3.js",
+      "path---index-c2a68ee60387d353ffb3.js.map"
     ],
     "component---src-pages-404-js": [
       "component---src-pages-404-js-4503918ea3a16cfcdb75.js",
@@ -47,14 +47,14 @@
       "path---offline-plugin-app-shell-fallback-a0e39f21c11f6a62c5ab.js.map"
     ],
     "app": [
-      "app-b79f9192562ac7b76d02.js",
+      "app-d2747f8f3ed32c37df82.js",
       "build-js-styles.css",
-      "app-b79f9192562ac7b76d02.js.map",
+      "app-d2747f8f3ed32c37df82.js.map",
       "build-js-styles.css.map"
     ],
     "path---world-models": [
-      "path---world-models-800ecab61df29ea0b8ca.js",
-      "path---world-models-800ecab61df29ea0b8ca.js.map"
+      "path---world-models-3c4aa7fb1ffa5645fbfb.js",
+      "path---world-models-3c4aa7fb1ffa5645fbfb.js.map"
     ],
     "path---404": [
       "path---404-a0e39f21c11f6a62c5ab.js",
