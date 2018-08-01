@@ -234,20 +234,17 @@ To make sure that outliers don't make the algorithm converge towards a local min
 
 ### Code
 
-After a few attempts with a single layer, I tried using a more complex **C**ontroller model (without going to deep because the search space shouldn't go much further than 10 000 parameters at most, otherwise the resources needed to find a good set of parameters would be tremendous).
-
-
+The Controller model is composed of a single linear layer with 8896 weights parameters (200 for the latent dimension, 1024 * 2 for the hidden state and cell of the LSTM * 4 for the action space), because as recommended by the author of the paper and the other of pycma, the search space should not go much further than 10 000 parameters.  
+  
 ```python
 class Controller(nn.Module):
-    def __init__(self, hidden_dim, hidden_units, action_space):
+    def __init__(self, hidden_dim, action_space):
         super(Controller, self).__init__()
 
-        self.fc1 = nn.Linear(hidden_dim + hidden_units, 512)
-        self.fc2 = nn.Linear(512, action_space)
+        self.fc1 = nn.Linear(hidden_dim, action_space)
         
     def forward(self, x):
-        x = F.relu(self.fc1(x))
-        x = F.sigmoid(self.fc2(x))
+        x = F.sigmoid(self.fc1(x))
         return x
 ```
 
@@ -256,7 +253,7 @@ class Controller(nn.Module):
 I used the package called **pycma** with the little wrapper from *hardmaru* called [es.py](https://github.com/hardmaru/estool/blob/master/es.py) that I slightly modified. The algorithm is instantiated as follows, with a population size (which is the number of set of parameters generated at each timestep) and an intial standard deviation.
 
 ``` python
- solver = CMAES(PARAMS_FC1 + LATENT_VEC + 512, ## Number of parameters
+ solver = CMAES(PARAMS_CONTROLLER, ## Number of parameters
                 sigma_init=SIGMA_INIT,
                 popsize=POPULATION)
 ```

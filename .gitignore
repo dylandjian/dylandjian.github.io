@@ -1,3 +1,4 @@
 node_modules/*
+src/pages-dev
 public/
 .cache
