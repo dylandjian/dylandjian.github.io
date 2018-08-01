@@ -415,7 +415,7 @@ I wasn't able to get any promising results. It raises the question of whether I 
 
 ## Acknowledgements
 
-I want to thank my school's AI association for letting me use the server to try to train this implementation of AlphaGo Zero. I would also like to thank everyone that gives feedback on the article. Be sure to get in touch with me if you have any suggestions or remarks about this article.
+I want to thank my school's AI association for letting me use the server to try to train this implementation of AlphaGo Zero. I would also like to thank everyone that gives feedback on the article. Be sure to get in touch with me if you have any suggestions or remarks about it.
 
 ## References
 
