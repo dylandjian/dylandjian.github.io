@@ -47,10 +47,9 @@ class Bio extends React.Component {
 					>
 						Welcome to my blog ! I am a software developer student{" "}
 						<a href="http://www.42.fr/">@42 Paris</a>, self-taught and
-            deeply passionate about Machine Learning. <br />
-						Currently looking for my final internship as a Research
-            Engineer.
-          </p>
+            passionate about machine learning and interested in
+						new web technologies. <br />
+					</p>
 				</div>
 				<div
 					style={{
