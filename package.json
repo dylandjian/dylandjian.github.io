@@ -1,0 +1,73 @@
+{
+  "name": "gatsby-starter-blog",
+  "private": true,
+  "description": "A starter for a blog powered by Gatsby and Markdown",
+  "version": "0.1.0",
+  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/gatsbyjs/gatsby/issues"
+  },
+  "dependencies": {
+    "@chakra-ui/gatsby-plugin": "^3.0.3",
+    "@chakra-ui/react": "^2.2.6",
+    "@emotion/react": "^11.10.0",
+    "@emotion/styled": "^11.10.0",
+    "framer-motion": "^7.1.0",
+    "gatsby": "^4.20.0",
+    "gatsby-omni-font-loader": "^2.0.2",
+    "gatsby-plugin-feed": "^4.20.0",
+    "gatsby-plugin-image": "^2.20.0",
+    "gatsby-plugin-manifest": "^4.20.0",
+    "gatsby-plugin-sharp": "^4.20.0",
+    "gatsby-remark-copy-linked-files": "^5.20.0",
+    "gatsby-remark-embed-youtube": "^0.0.7",
+    "gatsby-remark-images": "^6.20.0",
+    "gatsby-remark-katex": "^6.23.0",
+    "gatsby-remark-prismjs": "^6.20.0",
+    "gatsby-remark-responsive-iframe": "^5.20.0",
+    "gatsby-remark-smartypants": "^5.20.0",
+    "gatsby-source-filesystem": "^4.20.0",
+    "gatsby-transformer-remark": "^5.20.0",
+    "gatsby-transformer-sharp": "^4.20.0",
+    "katex": "^0.16.2",
+    "prismjs": "^1.28.0",
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0",
+    "typeface-montserrat": "0.0.75"
+  },
+  "devDependencies": {
+    "@types/node": "^18.7.2",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-helmet": "^6.1.5",
+    "@typescript-eslint/eslint-plugin": "^5.33.0",
+    "@typescript-eslint/parser": "^5.33.0",
+    "eslint": "^8.21.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-react": "^7.30.1",
+    "gatsby-plugin-prettier-eslint": "^1.0.6",
+    "prettier": "^2.7.1",
+    "react-helmet": "^6.1.0",
+    "typescript": "^4.7.4"
+  },
+  "homepage": "https://github.com/gatsbyjs/gatsby-starter-blog#readme",
+  "keywords": [
+    "gatsby"
+  ],
+  "license": "0BSD",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+  },
+  "scripts": {
+    "lint": "npx prettier --write .",
+    "build": "gatsby build",
+    "dev": "gatsby develop",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
+    "start": "gatsby develop",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean",
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
+  }
+}
