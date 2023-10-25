@@ -1,10 +1,49 @@
 import React, { ReactNode } from 'react'
 import { Link } from 'gatsby'
+import { StaticImage } from 'gatsby-plugin-image'
+import { Text, HStack } from '@chakra-ui/react'
+
+function Contact() {
+  return (
+    <HStack spacing={4} marginLeft="auto">
+      <Link to="https://github.com/dylandjian">
+        <StaticImage
+          layout="fixed"
+          src="../../static/github.svg"
+          alt="GitHub"
+          width={28}
+          height={28}
+        />
+      </Link>
+      <Link to="https://twitter.com/dylandjian">
+        <StaticImage
+          layout="fixed"
+          src="../../static/x.svg"
+          alt="X"
+          width={28}
+          height={28}
+        />
+      </Link>
+      <Link to="https://www.linkedin.com/in/dylan-djian">
+        <StaticImage
+          layout="fixed"
+          src="../../static/linkedin.svg"
+          alt="LinkedIn"
+          width={28}
+          height={28}
+        />
+      </Link>
+    </HStack>
+  )
+}
 
 function HomeHeader({ title }: { title: string }) {
   return (
     <h1 className="main-heading">
-      <Link to="/">{title}</Link>
+      <HStack spacing={42}>
+        <Text margin={0}>{title}</Text>
+        <Contact />
+      </HStack>
     </h1>
   )
 }
@@ -12,7 +51,9 @@ function HomeHeader({ title }: { title: string }) {
 function PageHeader({ title }: { title: string }) {
   return (
     <Link className="header-link-home" to="/">
-      {title}
+      <HStack spacing={42}>
+        <Text margin={0}>{title}</Text>
+      </HStack>
     </Link>
   )
 }

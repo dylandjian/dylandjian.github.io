@@ -1,9 +1,4 @@
-/**
- * Implement Gatsby's SSR (Server Side Rendering) APIs in this file.
- *
- * See: https://www.gatsbyjs.com/docs/ssr-apis/
- */
+import 'prismjs/themes/prism.css'
+import 'katex/dist/katex.min.css'
 
-exports.onRenderBody = ({ setHtmlAttributes }) => {
-  setHtmlAttributes({ lang: 'en' })
-}
+import './src/style.css'

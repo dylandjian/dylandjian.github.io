@@ -27,9 +27,10 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: 'Merriweather', system-ui, -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif,
-    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  --fontFamily-sans: 'Merriweather', system-ui, -apple-system,
+    BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
   --fontFamily-serif: 'Merriweather', 'Georgia', Cambria, 'Times New Roman',
     Times, serif;
   --font-body: var(--fontFamily-serif);
@@ -64,33 +65,8 @@
 
 /* HTML elements */
 
-*,
-:after,
-:before {
-  box-sizing: border-box;
-}
-
-html {
-  line-height: var(--lineHeight-normal);
-  font-size: var(--fontSize-root);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
-  font-family: var(--font-body);
-  font-size: var(--fontSize-1);
-  color: var(--color-text);
-}
-
 footer {
   padding: var(--spacing-6) var(--spacing-0);
-}
-
-hr {
-  background: var(--color-accent);
-  height: 1px;
-  border: 0;
 }
 
 /* Heading */
@@ -231,6 +207,8 @@ table thead tr th {
 
 a {
   color: var(--color-primary);
+  background-color: transparent;
+  text-decoration: inherit;
 }
 
 a:hover,
@@ -247,7 +225,7 @@ a:focus {
 }
 
 .global-header {
-  margin-bottom: var(--spacing-12);
+  margin-bottom: var(--spacing-8);
 }
 
 .main-heading {
@@ -330,4 +308,35 @@ a:focus {
 
 .language-python {
   font-size: 0.94em !important;
+}
+
+html {
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  touch-action: manipulation;
+}
+
+body {
+  position: relative;
+  min-height: 100%;
+  margin: 0;
+  font-family: var(--font-body);
+  font-feature-settings: 'kern';
+}
+
+:where(*, *::before, *::after) {
+  border-width: 0;
+  border-style: solid;
+  box-sizing: border-box;
+  word-wrap: break-word;
+}
+
+hr {
+  background: var(--color-accent);
+  border-top-width: 1px;
+  box-sizing: content-box;
+  height: 0;
+  overflow: visible;
 }

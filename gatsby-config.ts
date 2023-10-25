@@ -23,7 +23,6 @@ export const plugins = [
     resolve: '@chakra-ui/gatsby-plugin',
     options: {
       resetCSS: false,
-      isUsingColorMode: true,
     },
   },
   'gatsby-plugin-image',
@@ -32,6 +31,13 @@ export const plugins = [
     options: {
       path: `${__dirname}/content/blog`,
       name: 'blog',
+    },
+  },
+  {
+    resolve: 'gatsby-source-filesystem',
+    options: {
+      path: `${__dirname}/content/gallery`,
+      name: 'gallery',
     },
   },
   {
@@ -78,7 +84,14 @@ export const plugins = [
     },
   },
   'gatsby-transformer-sharp',
-  'gatsby-plugin-sharp',
+  {
+    resolve: 'gatsby-plugin-sharp',
+    options: {
+      defaults: {
+        quality: 100,
+      },
+    },
+  },
   {
     resolve: 'gatsby-plugin-manifest',
     options: {

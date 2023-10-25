@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Text, Flex, Stack, VStack, HStack } from '@chakra-ui/react'
+import { Text, Flex, VStack, HStack } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 
 export function Bio() {
@@ -12,9 +12,9 @@ export function Bio() {
             layout="fixed"
             formats={['auto', 'webp', 'avif']}
             src="../images/profile-pic.png"
-            width={100}
-            height={100}
-            quality={95}
+            width={200}
+            height={200}
+            quality={100}
             alt="Profile picture"
           />
         </Flex>
@@ -23,9 +23,8 @@ export function Bio() {
             Welcome to my blog !
           </Text>
           <Text>
-            I am a Software Engineer, current working for{' '}
-            <a href="https://payfit.com">PayFit</a>, mostly self-taught and
-            passionated about a lot of different topics.
+            I am a Software Engineer, mostly self-taught and passionated about a
+            lot of different topics.
           </Text>
           <Text>
             On this blog, you will find blog posts about anything, recipes,

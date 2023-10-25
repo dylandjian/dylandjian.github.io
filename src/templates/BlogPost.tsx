@@ -19,8 +19,10 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 style={{ margin: 0 }} itemProp="headline">
+            {post.frontmatter.title}
+          </h1>
+          <p style={{ marginBottom: 0 }}>{post.frontmatter.date}</p>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -42,6 +44,13 @@ const BlogPostTemplate = ({
           }}
         >
           <li>
+            {!previous && (
+              <li>
+                <Link to={'/'} rel="prev">
+                  ← Home page
+                </Link>
+              </li>
+            )}
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
                 ← {previous.frontmatter.title}
@@ -53,6 +62,13 @@ const BlogPostTemplate = ({
               <Link to={next.fields.slug} rel="next">
                 {next.frontmatter.title} →
               </Link>
+            )}
+            {!next && (
+              <li>
+                <Link to={'/'} rel="prev">
+                  Home page →
+                </Link>
+              </li>
             )}
           </li>
         </ul>

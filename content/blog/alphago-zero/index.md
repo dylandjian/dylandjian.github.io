@@ -398,7 +398,8 @@ def evaluate(player, new_player):
 ## Results
 
 After a week of training on my school's server, the agent played approximately 20k self-played games on a 9x9 Go board, using 128 MCTS simulations, playing 10 games in parallel. It did approximately 463k parameters update, with the best agent being replaced 417 times. Here is a clip of the best agent playing against himself.
-`video: https://www.youtube.com/watch?v=rkxBqK7f8qA`
+
+`youtube:https://www.youtube.com/embed/rkxBqK7f8qA`
 
 As the video shows, the agent did not learn the "fundamentals" of the game, like life and death, or even atari. However, it seems to have learned that it is generally a good move to answer locally. It also looks like the agent knows that Go is about territory and not frontal combat, which is shown in the first few moves. The shapes are also really bad, and the agent still plays inside his own living groups and killing them by removing liberties.
 

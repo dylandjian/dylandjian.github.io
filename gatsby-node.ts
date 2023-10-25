@@ -6,6 +6,14 @@ export async function createPages({ graphql, actions, reporter }) {
 
   // Define a template for blog post
   const blogPost = path.resolve('./src/templates/BlogPost.tsx')
+  const galleryPost = path.resolve('./src/templates/GalleryPost.tsx')
+  const recipe = path.resolve('./src/templates/Recipe.tsx')
+
+  const templateByType = {
+    blog: blogPost,
+    recipe,
+    gallery: galleryPost,
+  }
 
   // Get all markdown blog posts sorted by date
   const result = await graphql(
@@ -41,21 +49,40 @@ export async function createPages({ graphql, actions, reporter }) {
   // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
-    posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
-
-      createPage({
-        path: post.fields.slug,
-        component: blogPost,
-        context: {
-          id: post.id,
-          previousPostId,
-          nextPostId,
-        },
+    for (const type in templateByType) {
+      const relatedPosts = posts.filter((post) => {
+        return post.fields && post.fields.slug.includes(type)
       })
-    })
+
+      for (const [index, post] of relatedPosts.entries()) {
+        const previousPostId = index === 0 ? null : relatedPosts[index - 1].id
+        const nextPostId =
+          index === relatedPosts.length - 1 ? null : relatedPosts[index + 1].id
+
+        createPage({
+          path: post.fields.slug,
+          component: templateByType[type],
+          context: {
+            id: post.id,
+            previousPostId,
+            nextPostId,
+          },
+        })
+      }
+    }
   }
+}
+
+function createType(absolutePath: string) {
+  if (absolutePath.includes('gallery')) {
+    return 'gallery'
+  }
+
+  if (absolutePath.includes('blog')) {
+    return 'blog'
+  }
+
+  return 'recipe'
 }
 
 export function onCreateNode({ node, actions, getNode }) {
@@ -63,11 +90,22 @@ export function onCreateNode({ node, actions, getNode }) {
 
   if (node.internal.type === 'MarkdownRemark') {
     const value = createFilePath({ node, getNode })
+    const type = createType(node.fileAbsolutePath)
 
     createNodeField({
       name: 'slug',
       node,
-      value,
+      value: `/${type}${value}`,
+    })
+    createNodeField({
+      name: 'name',
+      node,
+      value: value.split('/')[1],
+    })
+    createNodeField({
+      name: 'type',
+      node,
+      value: type,
     })
   }
 }
@@ -81,6 +119,7 @@ export function createSchemaCustomization({ actions }) {
   // Also explicitly define the Markdown frontmatter
   // This way the "MarkdownRemark" queries will return `null` even when no
   // blog posts are stored inside "content/blog" instead of returning an error
+
   createTypes(`
     type SiteSiteMetadata {
       author: Author
@@ -110,6 +149,8 @@ export function createSchemaCustomization({ actions }) {
 
     type Fields {
       slug: String
+      type: String
+      name: String
     }
   `)
 }

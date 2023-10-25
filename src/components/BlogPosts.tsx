@@ -1,51 +1,42 @@
 import React from 'react'
-import { graphql, Link } from 'gatsby'
+import { Link } from 'gatsby'
+import { Heading, Text, VStack, HStack, Box } from '@chakra-ui/react'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
-export const BlogPosts = ({ data }) => {
-  const posts = data.allMarkdownRemark.nodes
-
+export const BlogPosts = ({ posts }) => {
   if (posts.length === 0) {
-    return (
-      <p>
-        No blog posts found. Add markdown posts to "content/blog" (or the
-        directory you specified for the "gatsby-source-filesystem" plugin in
-        gatsby-config.js).
-      </p>
-    )
+    return <Text>No blog posts found.</Text>
   }
 
   return (
-    <ol style={{ listStyle: 'none' }}>
-      {posts.map((post) => {
-        const title = post.frontmatter.title || post.fields.slug
-
+    <VStack spacing={8} paddingTop={4} alignItems="flex-start">
+      {posts.map((post: any) => {
         return (
-          <li key={post.fields.slug}>
-            <article
-              className="post-list-item"
-              itemScope
-              itemType="http://schema.org/Article"
-            >
-              <header>
-                <h2>
-                  <Link to={post.fields.slug} itemProp="url">
-                    <span itemProp="headline">{title}</span>
-                  </Link>
-                </h2>
-                <small>{post.frontmatter.date}</small>
-              </header>
-              <section>
-                <p
-                  dangerouslySetInnerHTML={{
-                    __html: post.frontmatter.description || post.excerpt,
-                  }}
-                  itemProp="description"
-                />
-              </section>
-            </article>
-          </li>
+          <HStack spacing={4} key={post.fields.name}>
+            <Box minWidth={120} height={120}>
+              <GatsbyImage
+                objectFit="cover"
+                image={getImage(post.icon.childImageSharp)}
+                alt="Caffe Latte"
+              />
+            </Box>
+
+            <VStack spacing={0} align="flex-start">
+              <Link to={post.fields.slug}>
+                <Heading fontSize={26} marginY={0}>
+                  {post.frontmatter.title}
+                </Heading>
+              </Link>
+              <Text fontSize={14} marginBottom={2}>
+                {post.frontmatter.date}
+              </Text>
+              <Text fontSize={15} marginBottom={0}>
+                {post.frontmatter.description || post.excerpt}
+              </Text>
+            </VStack>
+          </HStack>
         )
       })}
-    </ol>
+    </VStack>
   )
 }
