@@ -9,6 +9,7 @@ const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
   location,
 }) => {
+  console.log('text', post.fields.readingTime)
   const siteTitle = site.siteMetadata?.title || 'Title'
 
   return (
@@ -19,10 +20,22 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 style={{ margin: 0 }} itemProp="headline">
-            {post.frontmatter.title}
-          </h1>
-          <p style={{ marginBottom: 0 }}>{post.frontmatter.date}</p>
+          <h1 itemProp="headline">{post.frontmatter.title}</h1>
+          <div style={{ display: 'flex' }}>
+            <p style={{ margin: '0', fontSize: '16px' }}>
+              {post.frontmatter.date}
+            </p>
+            <p
+              style={{
+                margin: '0',
+                marginLeft: 'auto',
+                fontSize: '16px',
+                fontStyle: 'italic',
+              }}
+            >
+              {post.fields.readingTime.text}
+            </p>
+          </div>
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
@@ -107,6 +120,12 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+      }
+
+      fields {
+        readingTime {
+          text
+        }
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

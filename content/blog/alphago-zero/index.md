@@ -3,11 +3,11 @@ title: AlphaGo Zero demystified
 date: '2018-08-01T22:12:03.284Z'
 ---
 
+---
+
 <br/>
 
 ![alphago](./alphago.png)
-
-<br/>
 
 DeepMind has shaken the world of Reinforcement Learning and Go with its creation _AlphaGo_, and later _AlphaGo Zero_. It is the first computer program to beat
 a human professional Go player without handicap on a 19 x 19 board. It has also beaten the world champion **Lee Sedol** 4 games to 1, **Ke Jie** (number one world ranked player at the time) and many other top ranked players with the _Zero_ version. The game of Go is a difficult environment because of its

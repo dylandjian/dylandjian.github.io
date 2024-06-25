@@ -19,7 +19,7 @@ const GalleryPost = ({
       (image) =>
         image.relativeDirectory === post.fields.name &&
         image.childImageSharp &&
-        !image.name.includes('icon')
+        !image.name.includes('icon'),
     )
     .map((image) => image.childImageSharp)
 

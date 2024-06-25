@@ -11,7 +11,7 @@ const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || 'Title'
 
   const blogPosts = data.allMarkdownRemark.nodes.filter(
-    (elem: any) => elem.fields.type === 'blog'
+    (elem: any) => elem.fields.type === 'blog',
   )
   const enrichedBlogPosts = blogPosts.reduce((acc, elem) => {
     const name = elem.fields.name
@@ -19,14 +19,14 @@ const BlogIndex = ({ data, location }) => {
     const icon = data.allFile.nodes.find(
       (node) =>
         node.childImageSharp &&
-        node.childImageSharp.fixed.originalName === `${name}-icon.png`
+        node.childImageSharp.fixed.originalName === `${name}-icon.png`,
     )
 
     return [...acc, { ...elem, icon }]
   }, [])
 
   const galleryPosts = data.allMarkdownRemark.nodes.filter(
-    (elem: any) => elem.fields.type === 'gallery'
+    (elem: any) => elem.fields.type === 'gallery',
   )
   const enrichedGalleryPosts = galleryPosts.reduce((acc, elem) => {
     const allFiles = data.allFile.nodes
@@ -35,10 +35,10 @@ const BlogIndex = ({ data, location }) => {
     const icon = allFiles.find(
       (node) =>
         node.childImageSharp &&
-        node.childImageSharp.fixed.originalName === `${name}-icon.png`
+        node.childImageSharp.fixed.originalName === `${name}-icon.png`,
     )
     const relatedImages = allFiles.filter(
-      (file) => file.extension !== 'md' && file.relativeDirectory === name
+      (file) => file.extension !== 'md' && file.relativeDirectory === name,
     )
 
     console
@@ -101,7 +101,7 @@ export const pageQuery = graphql`
       }
     }
 
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
       nodes {
         excerpt
         fields {

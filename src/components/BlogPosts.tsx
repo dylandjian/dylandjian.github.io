@@ -8,6 +8,8 @@ export const BlogPosts = ({ posts }) => {
     return <Text>No blog posts found.</Text>
   }
 
+  console.log(posts)
+
   return (
     <VStack spacing={8} paddingTop={4} alignItems="flex-start">
       {posts.map((post: any) => {

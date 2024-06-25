@@ -51,6 +51,18 @@ export const plugins = [
     resolve: 'gatsby-transformer-remark',
     options: {
       plugins: [
+        `gatsby-remark-reading-time`,
+        {
+          resolve: `gatsby-remark-table-of-contents`,
+          options: {
+            tight: true,
+            ordered: false,
+            fromHeading: 1,
+            toHeading: 2,
+            exclude: 'Table of Contents',
+          },
+        },
+        `gatsby-remark-autolink-headers`,
         {
           resolve: 'gatsby-remark-embed-youtube',
           options: {
