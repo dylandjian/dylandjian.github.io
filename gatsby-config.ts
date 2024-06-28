@@ -27,6 +27,14 @@ export const plugins = [
   },
   'gatsby-plugin-image',
   {
+    resolve: 'gatsby-plugin-react-svg',
+    options: {
+      rule: {
+        include: /static/, // See below to configure properly
+      },
+    },
+  },
+  {
     resolve: 'gatsby-source-filesystem',
     options: {
       path: `${__dirname}/content/blog`,
@@ -51,6 +59,13 @@ export const plugins = [
     resolve: 'gatsby-transformer-remark',
     options: {
       plugins: [
+        {
+          resolve: 'gatsby-remark-embed-youtube',
+          options: {
+            width: 800,
+            height: 400,
+          },
+        },
         `gatsby-remark-reading-time`,
         {
           resolve: `gatsby-remark-table-of-contents`,
@@ -63,13 +78,6 @@ export const plugins = [
           },
         },
         `gatsby-remark-autolink-headers`,
-        {
-          resolve: 'gatsby-remark-embed-youtube',
-          options: {
-            width: 800,
-            height: 400,
-          },
-        },
         {
           resolve: 'gatsby-remark-responsive-iframe',
           options: {

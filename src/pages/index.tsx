@@ -5,7 +5,7 @@ import { Tab, TabList, TabPanel, TabPanels, Tabs } from '@chakra-ui/react'
 import { Bio } from '../components/Bio'
 import { Layout } from '../components/Layout'
 import { BlogPosts } from '../components/BlogPosts'
-import { Gallery } from '../components/Gallery'
+import { GalleryPosts } from '../components/GalleryPosts'
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || 'Title'
@@ -41,8 +41,6 @@ const BlogIndex = ({ data, location }) => {
       (file) => file.extension !== 'md' && file.relativeDirectory === name,
     )
 
-    console
-
     return [...acc, { ...elem, images: relatedImages, icon }]
   }, [])
 
@@ -60,7 +58,7 @@ const BlogIndex = ({ data, location }) => {
             <BlogPosts posts={enrichedBlogPosts} />
           </TabPanel>
           <TabPanel>
-            <Gallery images={enrichedGalleryPosts} />
+            <GalleryPosts images={enrichedGalleryPosts} />
           </TabPanel>
           <TabPanel>No recipes yet</TabPanel>
         </TabPanels>
@@ -108,6 +106,10 @@ export const pageQuery = graphql`
           type
           slug
           name
+
+          readingTime {
+            text
+          }
         }
         frontmatter {
           date(formatString: "MMMM DD, YYYY")

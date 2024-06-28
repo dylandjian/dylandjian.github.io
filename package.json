@@ -19,6 +19,7 @@
     "gatsby-plugin-feed": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
+    "gatsby-plugin-react-svg": "^3.3.0",
     "gatsby-plugin-sharp": "^5.13.1",
     "gatsby-remark-autolink-headers": "^6.13.1",
     "gatsby-remark-copy-linked-files": "^6.13.1",
@@ -66,6 +67,9 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/gatsbyjs/gatsby-starter-blog.git"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   },
   "scripts": {
     "lint": "npx prettier --write .",

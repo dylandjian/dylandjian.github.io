@@ -25,17 +25,21 @@ const GalleryPost = ({
 
   return (
     <Layout location={location} title={siteTitle}>
-      <header>
-        <h1 style={{ margin: 0 }} itemProp="headline">
-          {post.frontmatter.title}
-        </h1>
-        <p>{post.frontmatter.date}</p>
+      <header style={{ marginBottom: '24px' }}>
+        <h1 itemProp="headline">{post.frontmatter.title}</h1>
+        <div style={{ display: 'flex', marginBottom: '24px' }}>
+          <p style={{ margin: '0', fontSize: '16px' }}>
+            {post.frontmatter.date}
+          </p>
+        </div>
+        <hr />
       </header>
 
       <section
         dangerouslySetInnerHTML={{ __html: post.html }}
         itemProp="articleBody"
       />
+      <h1>Images</h1>
       <Box paddingBottom={4}>
         <Gallery images={images} mdColWidth={50} />
       </Box>

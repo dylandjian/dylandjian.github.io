@@ -1,19 +1,28 @@
 import * as React from 'react'
-import { Text, Flex, VStack, HStack } from '@chakra-ui/react'
+import { Text, Flex, VStack, useMediaQuery, Stack } from '@chakra-ui/react'
 import { StaticImage } from 'gatsby-plugin-image'
 
 export function Bio() {
+  const [isLargerThan500] = useMediaQuery('(min-width: 500px)')
+
   return (
-    <Flex className="bio">
-      <HStack>
-        <Flex width={200}>
+    <Flex className="bio" marginBottom="12px">
+      <Stack
+        direction={isLargerThan500 ? 'row' : 'column'}
+        alignItems="center"
+        spacing={8}
+      >
+        <Flex>
           <StaticImage
-            className="bio-avatar"
             layout="fixed"
             formats={['auto', 'webp', 'avif']}
             src="../images/profile-pic.png"
             width={200}
             height={200}
+            style={{
+              borderRadius: '20px',
+              minWidth: '50px',
+            }}
             quality={100}
             alt="Profile picture"
           />
@@ -32,7 +41,7 @@ export function Bio() {
           </Text>
           <Text> Happy browsing !</Text>
         </VStack>
-      </HStack>
+      </Stack>
     </Flex>
   )
 }

@@ -3,11 +3,11 @@ title: World Models applied to Sonic
 date: '2018-06-06T22:12:03.284Z'
 ---
 
----
-
 ![openai](./open_ai.png)
 
 Open AI lauched a Reinforcement Learning competition called the [Retro Contest](https://contest.openai.com/) on April 5th. The contest lasted over the course of the past 2 months, and the goal was to make the best agent to play the old SEGA Genesis platform game Sonic the Hedgehog. The problem is really simple to understand, yet very **very** hard to resolve. The evaluation of the agent is done on levels that have not been previously seen by the agent, therefore making the competition a Meta Reinforcement Learning problem. I will present how I tried to tackle this problem by applying recently published techniques that have been used to solve to similar problems (however generally simpler). This article will require a bit of background knowledge in Machine Learning and Python, as I will be referencing [my own implementation](https://github.com/dylandjian/retro-contest-sonic).
+
+<center>. . .</center>
 
 # Table of Contents
 
@@ -15,6 +15,8 @@ Open AI lauched a Reinforcement Learning competition called the [Retro Contest](
 to-heading: 3
 
 ```
+
+<center>. . .</center>
 
 ## Introduction
 

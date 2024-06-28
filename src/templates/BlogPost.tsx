@@ -9,7 +9,6 @@ const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
   location,
 }) => {
-  console.log('text', post.fields.readingTime)
   const siteTitle = site.siteMetadata?.title || 'Title'
 
   return (
@@ -19,9 +18,9 @@ const BlogPostTemplate = ({
         itemScope
         itemType="http://schema.org/Article"
       >
-        <header>
+        <header style={{ marginBottom: '24px' }}>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <div style={{ display: 'flex' }}>
+          <div style={{ display: 'flex', marginBottom: '24px' }}>
             <p style={{ margin: '0', fontSize: '16px' }}>
               {post.frontmatter.date}
             </p>
@@ -36,6 +35,7 @@ const BlogPostTemplate = ({
               {post.fields.readingTime.text}
             </p>
           </div>
+          <hr />
         </header>
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}

@@ -3,10 +3,6 @@ title: Guide for a minimalist home kitchen
 date: '2024-01-04T18:12:03.284Z'
 ---
 
----
-
-<br/>
-
 In today's fast-paced world, creating a minimalist home kitchen can bring a sense of calm and efficiency to your culinary endeavors. By focusing on high-quality, essential tools and thoughtful organization, you can streamline your cooking process and enjoy a clutter-free space. This guide aims to help you select the best tools and materials for your kitchen, ensuring that every item serves a purpose and enhances your cooking experience.
 
 # Table of Contents
@@ -27,11 +23,9 @@ The world of cutting tools is a diverse landscape, featuring an array of knives 
 
 Different countries bring their own expertise to knife craftsmanship.
 
-- 🇯🇵 Japanese knives are renowned for precision and sharpness, often featuring a single bevel. Materials include high-carbon steel or VG-10 steel.
-
-- 🇫🇷 French knives, such as those from Sabatier, emphasize craftsmanship and versatility, often using high-carbon stainless steel.
-
-- 🇩🇪 German knives, exemplified by brands like Wusthof or Henckels, are durable and well-balanced, typically using high-carbon stainless steel or X50CrMoV15 steel.
+- 🇯🇵 **Japanese** knives are renowned for precision and sharpness, often featuring a single bevel. Materials include high-carbon steel or VG-10 steel.
+- 🇫🇷 **French** knives, such as those from Sabatier, emphasize craftsmanship and versatility, often using high-carbon stainless steel.
+- 🇩🇪 **German** knives, exemplified by brands like Wusthof or Henckels, are durable and well-balanced, typically using high-carbon stainless steel or X50CrMoV15 steel.
 
 ### Materials
 
@@ -51,13 +45,15 @@ A Chef's Knife is a versatile, all-purpose knife for slicing, dicing, and choppi
 Opt for high-carbon stainless steel for a balance of sharpness and durability.
 
 - **Brand Recommendation**: [Kai DM-0702W](https://www.amazon.fr/gp/product/B07X6R6PGR) from Shun.
+  I have been using this knife extensively for a few years now and it is still holding its
+  shape as in the first few months.
 
 #### Paring Knife
 
 Ideal for precision tasks like peeling and trimming.
 Choose stainless steel or high-carbon stainless steel for versatility.
 
-- **Brand Recommendation**: [Kai DM-0700W](https://www.amazon.fr/gp/product/B07X7RP8L3) from Shun.
+- **Brand Recommendation**: [Kai DM-0700W](https://www.amazon.fr/gp/product/B07X7RP8L3) from Shun. I have also been using this knife, very handy when the Chef's Knife is too large. It has also been holding very well.
 
 #### Bread Knife
 
@@ -72,6 +68,13 @@ Handy for tasks like trimming herbs, cutting poultry, or opening packages.
 Select shears with stainless steel blades and comfortable handles for versatility.
 
 - **Brand Recommendation**: [OXO Good Grips Kitchen Shears](https://www.amazon.fr/Oxo-Grips-Ciseaux-cuisine-herbes/dp/B000KILLXM/) from OXO.
+
+#### Y Metal Vegetable Peeler
+
+A Y metal vegetable peeler is an ergonomic and efficient tool for peeling fruits and vegetables.
+Opt for a stainless steel blade for durability and a comfortable handle for ease of use.
+
+- **Brand Recommendation**: [Y Metal Peeler](https://www.amazon.fr/Turbo-Original-%C3%89plucheur-Universel/dp/B007KKV8ZE)
 
 ## Boards
 
@@ -116,17 +119,17 @@ Regularly sharpening your knives is a fundamental aspect of maintenance. Conside
 
 Use stones with varying grit levels for a comprehensive sharpening process. Follow the correct angle for your knife (typically around 20 degrees) and use a consistent motion.
 
-- **Coarse Grit (200-800)**: Ideal for repairing damaged blades or reshaping the edge.
-- **Medium Grit (800-1500)**: Smoothens out coarse scratches and refines the edge.
-- **Fine Grit (1500-3000)**: Provides a polished finish and sharpens to a razor edge.
+- **Coarse Grit (200-800)** - Ideal for repairing damaged blades or reshaping the edge.
+- **Medium Grit (800-1500)** - Smoothens out coarse scratches and refines the edge.
+- **Fine Grit (1500-3000)** - Provides a polished finish and sharpens to a razor edge.
 - **Recommendation**: [Here](https://www.amazon.fr/Homtone-Aiguiseur-couteaux-aiguiser-antid%C3%A9rapante/dp/B08BRYN7KT) is a good set for that.
 
 #### Honing Rods
 
 Choose a honing rod made of a hard material like ceramic or diamond.
 
-- **Ceramic Rods**: Ideal for honing and maintaining an already sharp edge.
-- **Diamond Rods**: Effective for more aggressive honing and minor sharpening.
+- **Ceramic Rods** - Ideal for honing and maintaining an already sharp edge.
+- **Diamond Rods** - Effective for more aggressive honing and minor sharpening.
   Hold the knife at a 15-20 degree angle and swipe it along the rod from base to tip.
 - **Recommendation**: [Here](https://www.amazon.fr/gp/product/B09WZX2BSQ) is a good recommendation that I am personally using
 
@@ -179,137 +182,92 @@ Understanding the materials used in measuring and mixing tools is essential for 
 - **Plastic** is lightweight and affordable but may be less durable over time.
 - **Glass** is resistant to odors and stains but can be breakable.
 
-## Types
+## Tools
 
-### Measuring Tools
+### Measuring Cups (Liquid and Dry) and Spoons
 
-#### Measuring Cups (Liquid and Dry)
-
-Essential for precise measurement of both liquid and dry ingredients.
-
-#### Measuring Spoons
-
-Used for accurate measurement of smaller quantities of ingredients.
-
-#### Kitchen Scale
-
-Ideal for precise measurements, especially in baking where accuracy is crucial.
-
-### Mixing Tools
-
-#### Mixing Bowls
-
-Come in various sizes and materials, providing a versatile platform for blending ingredients.
-
-#### Wooden Spoons
-
-Gentle on cookware and ideal for stirring, mixing, and tasting.
-
-#### Silicone Spatulas
-
-Heat-resistant and flexible, perfect for scraping bowls and folding ingredients.
-
-#### Whisks
-
-Used for incorporating air into mixtures and achieving smooth textures.
-
-### Recommendations
-
-When it comes to measuring and mixing tools, the right selection can significantly enhance your cooking and baking experience. Consider the following recommendations based on types and materials:
-
-#### Measuring Cups and Spoons
+Measure cups are essential for precise measurement of both liquid and dry ingredients.
+Measure spoons on the other hand are used for accurate measurement of smaller quantities of ingredients.
 
 - **Material:** Opt for stainless steel for durability and resistance to corrosion.
 - **Brand Recommendation:** [OXO Good Grips Stainless Steel Measuring Cups and Spoons](https://www.amazon.fr/Cuill%C3%A8res-mesurer-inoxydable-magn%C3%A9tique-Tasses/dp/B01DI9KGWQ) – known for precision and user-friendly design.
 
-#### Kitchen Scale
+### Kitchen Scale
+
+Ideal for precise measurements, especially in baking where accuracy is crucial.
 
 - **Material:** Look for a scale with a stainless steel platform for durability.
 - **Brand Recommendation:** [Escali Primo Digital Kitchen Scale](https://www.amazon.fr/Escali-Primo-Digital-multifonctionnel-%C3%89chelle/dp/B0007GAWRS) – a reliable choice for accurate measurements. You could also use a Coffee Scale for a 2 in 1 usage.
 
-#### Mixing Bowls
+### Mixing Bowls
+
+Come in various sizes and materials, providing a versatile platform for blending ingredients.
 
 - **Material:** Choose stainless steel for durability or glass for a heat-resistant option.
 - **Brand Recommendation:** [Pyrex Smart Essentials Mixing Bowl Set](https://www.amazon.fr/ARC-Pyrex-333S703-Bols-M%C3%A9langeurs/dp/B000TARBC6) – durable glass bowls suitable for various mixing tasks.
 
-#### Wooden Spoons
+### Wooden Spoons
+
+Gentle on cookware and ideal for stirring, mixing, and tasting.
 
 - **Material:** Opt for beechwood or bamboo for a lightweight yet sturdy option.
 - **Brand Recommendation:** [OXO Good Grips Wooden Spoon Set](https://www.amazon.fr/OXO-Grips-3-Piece-Wooden-Turner/dp/B09QD4KJ21) – known for ergonomic design and durability.
 
-#### Silicone Spatulas
+### Silicone Spatulas
+
+Heat-resistant and flexible, perfect for scraping bowls and folding ingredients.
 
 - **Material:** Look for heat-resistant silicone for versatile use.
 - **Brand Recommendation:** [RÖSLE Silicone Spatula](https://www.amazon.fr/R%C3%96SLE-L%C3%A8che-plat-p%C3%A2tisserie-inoxydable-lave-vaisselle/dp/B00FPLHXZO) – durable and flexible for various kitchen tasks.
 
-#### Whisks
+### Whisks
+
+Used for incorporating air into mixtures and achieving smooth textures.
 
 - **Material:** Choose stainless steel for durability and ease of cleaning.
 - **Brand Recommendation:** [OXO Stainless Steel Whisk](https://www.amazon.fr/OXO-acier-Sauce-Fouet-22/dp/B000079XW7) – a reliable whisk for incorporating air into mixtures.
+
+### Spider
+
+A spider is a must-have for safely lifting and draining food from hot oil or boiling water. It can also act in place of a heavy duty colander.
+Choose one with a stainless steel handle and a mesh basket for versatility and durability.
+
+- **Brand Recommendation**: [Kitchen spider](https://www.amazon.fr/%C3%89cumoire-araign%C3%A9e-inoxydable-quotidien-diam%C3%A8tre/dp/B08Z7V7NB3)
 
 # Cookware
 
 Cookware forms the foundation of your kitchen, influencing the cooking techniques and flavors of your dishes. In this section, we'll delve into the essential types of cookware, cookware materials, and provide recommendations for building a well-rounded cookware collection.
 
-## Essential Types of Cookware
+## Materials
+
+Understanding the materials used in cookware is crucial for making informed choices.
+
+- **Stainless Steel** - Durable, resistant to rust, and versatile. Ideal for skillets, saucepans, and baking sheets.
+- **Non-Stick** - Easy to clean, suitable for low-fat cooking. Ideal for frying pans.
+- **Cast Iron** - Excellent heat retention and even cooking. Ideal for skillets, frying pans, and Dutch ovens.
+- **Copper** - Rapid heat conductivity, precise temperature control. Commonly used in saucepans.
+- **Aluminum** - Lightweight, affordable, and heats quickly. Ideal for baking sheets.
+- **Carbon Steel** - Combines the best qualities of cast iron and stainless steel. Suitable for skillets, woks, and frying pans.
+
+## Types
 
 ### Skillets/Frying Pans
 
 Versatile for searing, frying, and sautéing, skillets and frying pans come in various materials to suit different cooking needs.
-
-### Saucepans
-
-Ideal for boiling, simmering, and making sauces, saucepans come in different sizes to accommodate various recipes.
-
-### Dutch Ovens
-
-Suitable for slow cooking, braising, roasting, and baking, Dutch ovens provide excellent heat retention.
-
-- **Maintenance:** Regularly season the interior with oil to maintain a non-stick surface. Clean with mild soapy water and avoid using harsh abrasives.
-
-## Cookware Materials
-
-Understanding the materials used in cookware is crucial for making informed choices.
-
-#### Stainless Steel
-
-Durable, resistant to rust, and versatile. Ideal for skillets, saucepans, and baking sheets.
-
-#### Non-Stick
-
-Easy to clean, suitable for low-fat cooking. Ideal for frying pans.
-
-#### Cast Iron
-
-Excellent heat retention and even cooking. Ideal for skillets, frying pans, and Dutch ovens.
-
-#### Copper
-
-Rapid heat conductivity, precise temperature control. Commonly used in saucepans.
-
-#### Aluminum
-
-Lightweight, affordable, and heats quickly. Ideal for baking sheets.
-
-#### Carbon Steel
-
-Combines the best qualities of cast iron and stainless steel. Suitable for skillets, woks, and frying pans.
-
-## Recommendations
-
-When building your cookware collection, consider the following recommendations:
-
-### Skillets/Frying Pans
 
 - **Model:** [DeBuyer Mineral B 28cm Carbon Steel](https://www.amazon.fr/Buyer-Po%C3%AAle-MINERAL-Diam%C3%A8tre-5610-28/dp/B00462QP16)
 - **Maintenance:** Season regularly with oil for optimal performance.
 
 ### Saucepans
 
+Ideal for boiling, simmering, and making sauces, saucepans come in different sizes to accommodate various recipes.
+
 - **Model:** [KitchenAid 3L Multi-Ply Stainless Steel](https://www.amazon.fr/gp/product/B0B6G3L8Y6)
-- **Care and Cleaning:** Handwash with mild soapy water. To remove stains, mix baking soda and water to form a paste, apply to stains, and gently scrub with a non-abrasive sponge.
+- **Maintenance:** Handwash with mild soapy water. To remove stains, mix baking soda and water to form a paste, apply to stains, and gently scrub with a non-abrasive sponge.
 
 ### Dutch Ovens
+
+Suitable for slow cooking, braising, roasting, and baking, Dutch ovens provide excellent heat retention.
 
 - **Model:** [Le Creuset Enameled Cast Iron](https://www.amazon.fr/gp/product/B0BTMPXPPF)
 - **Maintenance:** Season the interior with oil as needed. Clean with mild soapy water. Avoid using metal utensils to prevent damage to the enamel coating.
@@ -326,6 +284,10 @@ Bakeware dishes come in various materials and shapes, each serving a specific pu
 
 Versatile for baking savory casseroles and hot dishes, casserole dishes are available in materials like stoneware, porcelain, and cast iron.
 
+- **Model:** [Le Creuset Enameled Cast Iron](https://www.amazon.fr/gp/product/B0BTMPXPPF)
+- **Size:** 3-quart
+- **Maintenance:** Season the interior with oil as needed. Handwash with mild soapy water.
+
 ### _Muffin Tins (optional)_
 
 Essential for baking muffins and cupcakes, muffin tins are usually made of non-stick materials for easy removal.
@@ -338,9 +300,19 @@ Ideal for individual servings of desserts like crème brûlée and soufflés, ra
 
 Ideal for baking cakes and layered desserts, cake pans come in various sizes and materials, including aluminum, non-stick, and silicone.
 
+- **Brand:** Wilton
+- **Material:** Non-stick aluminum
+- **Size:** 9-inch round
+- **Maintenance:** Handwash with mild soapy water to preserve the non-stick coating.
+
 ### _Pie Dishes (optional)_
 
 Perfect for baking pies, quiches, and tarts, pie dishes are typically made of ceramic, glass, or metal. Choose the material based on your preferred crust texture.
+
+- **Brand:** Emile Henry
+- **Material:** Ceramic
+- **Size:** 9-inch
+- **Maintenance:** Dishwasher-safe for easy cleaning.
 
 ## Sheets
 
@@ -350,9 +322,20 @@ Bakeware sheets play a crucial role in achieving the perfect texture for cookies
 
 Essential for baking cookies, roasting vegetables, and more, baking sheets are typically made of aluminum or stainless steel.
 
+- **Brands:** Nordic Ware, OXO
+- **Material:** Stainless Steel
+- **Model**: [Nordic Ware Set](https://www.amazon.fr/Nordic-Ware-pi%C3%A8ces-Bakers-Delight/dp/B079Q671Q5)
+- **Sizes:** Consider having 2 or 3 with 2 different sizes for versatility.
+- **Maintenance:** Handwash with mild soapy water. Avoid using abrasive pads to prevent scratching.
+
 ### _Silicone Baking Mats (optional)_
 
 Non-stick silicone mats provide an excellent surface for baking cookies and prevent sticking without the need for additional oils or sprays.
+
+- **Brand:** Silpat
+- **Material:** Silicone
+- **Size:** Standard half-sheet
+- **Maintenance:** Wipe clean or handwash with mild soapy water.
 
 ### _Loaf Pans (optional)_
 
@@ -361,47 +344,6 @@ Ideal for baking bread and pound cakes, loaf pans come in various sizes and mate
 ### _Cooling Racks (optional)_
 
 While not a traditional "sheet," cooling racks are essential for allowing baked goods to cool evenly, preventing sogginess.
-
-## Recommendations
-
-When choosing bakeware for your kitchen, consider the following recommendations:
-
-### Casserole Dishes
-
-- **Model:** [Le Creuset Enameled Cast Iron](https://www.amazon.fr/gp/product/B0BTMPXPPF)
-- **Size:** 3-quart
-- **Maintenance:** Season the interior with oil as needed. Handwash with mild soapy water.
-
-### Baking Sheets/Rimmed Baking Pans
-
-- **Brands:** Nordic Ware, OXO
-- **Material:** Stainless Steel
-- **Model**: [Nordic Ware Set](https://www.amazon.fr/Nordic-Ware-pi%C3%A8ces-Bakers-Delight/dp/B079Q671Q5)
-- **Sizes:** Consider having 2 or 3 with 2 different sizes for versatility.
-- **Maintenance:** Handwash with mild soapy water. Avoid using abrasive pads to prevent scratching.
-
-### _Cake Pans (optional)_
-
-- **Brand:** Wilton
-- **Material:** Non-stick aluminum
-- **Size:** 9-inch round
-- **Maintenance:** Handwash with mild soapy water to preserve the non-stick coating.
-
-### _Pie Dishes (optional)_
-
-- **Brand:** Emile Henry
-- **Material:** Ceramic
-- **Size:** 9-inch
-- **Maintenance:** Dishwasher-safe for easy cleaning.
-
-### _Silicone Baking Mats (optional)_
-
-- **Brand:** Silpat
-- **Material:** Silicone
-- **Size:** Standard half-sheet
-- **Maintenance:** Wipe clean or handwash with mild soapy water.
-
-### _Cooling Racks (optional)_
 
 - **Brand:** Checkered Chef
 - **Material:** Stainless Steel
@@ -476,7 +418,8 @@ To optimize storage space, consider stackable containers for an organized kitche
 
 # Why you don't need anything more than this
 
-- Congratulations on completing the comprehensive guide to kitchen essentials! You now have the knowledge to create a fully equipped and efficient culinary space, from cutting and chopping tools to cookware, bakeware, measuring and mixing tools, storage solutions, and specialized items.
-- Embracing a minimalist approach ensures a clutter-free environment, focusing on essential, high-quality tools that stand the test of time. Prioritize quality over quantity, contribute to sustainability, and tailor your kitchen to your unique needs. Now, with your well-equipped kitchen, enjoy a culinary journey filled with creativity, delicious meals, and the joy of sharing good food with your loved ones.
+Congratulations on completing the comprehensive guide to kitchen essentials! You now have the knowledge to create a fully equipped and efficient culinary space, from cutting and chopping tools to cookware, bakeware, measuring and mixing tools, storage solutions, and specialized items.
 
-Happy cooking!
+Embracing a minimalist approach ensures a clutter-free environment, focusing on essential, high-quality tools that stand the test of time. Prioritize quality over quantity, contribute to sustainability, and tailor your kitchen to your unique needs. Now, with your well-equipped kitchen, enjoy a culinary journey filled with creativity, delicious meals, and the joy of sharing good food with your loved ones.
+
+Happy cooking! 🎉

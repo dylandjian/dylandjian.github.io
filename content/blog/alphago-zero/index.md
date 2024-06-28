@@ -3,10 +3,6 @@ title: AlphaGo Zero demystified
 date: '2018-08-01T22:12:03.284Z'
 ---
 
----
-
-<br/>
-
 ![alphago](./alphago.png)
 
 DeepMind has shaken the world of Reinforcement Learning and Go with its creation _AlphaGo_, and later _AlphaGo Zero_. It is the first computer program to beat
@@ -14,24 +10,28 @@ a human professional Go player without handicap on a 19 x 19 board. It has also 
 very large branching factor at every move which makes classical techniques such as alpha-beta pruning and heuristic search unrealistic. I will present my work
 on reproducing the paper as closely as I could. This article will again require background knowledge in Machine Learning and Python, as I will make references to [my own implementation](https://github.com/dylandjian/SuperGo). It will also require a little bit of knowledge about the game of Go.
 
-## Introduction
+# Table of Contents
+
+```toc
+to-heading: 3
+
+```
+
+# Introduction
 
 After watching and reading a lot of theory about Reinforcement Learning and Machine learning in general, I decided that I wanted to start implementing my first project. As a _(bad)_ Go player and self-taught student in the field, I felt like the promise of learning how to play such a complex game _tabula rasa_ was super interesting. I was using Keras at the time and really wanted to transition into PyTorch, so this was the perfect opportunity for it. It was a bit hard to get started on such a big project. The first resource that I found was [this amazing info graphic by David Foster](https://applied-data.science/static/main/res/alpha_go_zero_cheat_sheet.png) that I will be referencing throughout the article. After a few days of thinking and searching, I was ready to start building the entire pipeline, following the [Nature paper published by DeepMind](https://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ).
 
-## AlphaGo Zero
+# AlphaGo Zero
 
 AlphaGo Zero pipeline is divided into three main components (just like the previous article on [World Models](https://dylandjian.github.io/world-models/)), each in a different process that runs the code asynchronously. The first component is the **self-play**. It is responsible for the data generation.
 The second component is the **training**, where freshly generated data by the self-play component is used to improve the current best networks. The final part is the **evaluation**, which decides whether the trained agent is better than the agent that is currently used to generate data. This last part is crucial since generated data should always come from the best available networks in order to generate quality moves much quicker in the self-play process.
 To better understand how these components interact with each other, I will describe the building blocks of the project independently and then later assemble them to form the global pipeline.
 
-<center>. . .</center>
-
-## The environment
+# The environment
 
 Ideally, a good environment would be one where it is possible to play really fast and that has implemented the Go rules (atari, ko, komi and others). After some research, I stumbled upon an implementation in OpenAI Gym ([old version](https://github.com/openai/gym/blob/6af4a5b9b2755606c4e0becfe1fc876d33130526/gym/envs/board_game/go.py) that had the board environments) that was using [pachi_py](https://github.com/openai/pachi-py) which is a Python binding to the C++ [Pachi Go Engine](https://github.com/pasky/pachi). After a few tweaks the engine was ready to be used.
 The first tweak is the fact that the input of the agent is a special representation of the board, as shown in the figure below. The state is composed of the current position of the black stones as a binary map (1 where there is a black stone, 0 otherwise) as well as the past 7 board states. It is concatenated with the same input for the white stones. This is mainly done in case of a _ko_.
 Finally, a map full of 0 or 1 is added to represent which player is about to play. It is represented this way for the ease of implementation, however it can be encoded in a single bit otherwise.
-<br />
 
 ![input](./input.png)
 
@@ -39,13 +39,11 @@ The second tweak is to make sure that it is possible to play with the engine whe
 
 In addition to these tweaks, the code had to be adjusted to be able to use the Tromp-Taylor scoring to have a good estimate of the winner during the game in case it stops early (which will be explained in more details in the _training_ section below).
 
-<center>. . .</center>
-
-## The agent
+# The agent
 
 The agent is composed of **three** neural networks that work together : a **feature extractor**, a **policy** network and a **value** network. This is also why AlphaGo Zero is sometimes called the _two headed beast_ : a body, which is the feature extractor, and two heads : policy and value. The feature extractor model creates its own representation of the board state. The policy model outputs a probability distribution over all the possible moves and the value model predicts a scalar value in the range $[-1;1]$ to represent which player is more likely to win given the current state of the board. Both the policy and value model use the output of the feature extractor as input. Let's see how they actually work.
 
-### Feature extractor
+## Feature extractor
 
 The feature extractor model is a Residual Neural Network, which is a special Convolutional Neural Network _(CNN)_. Its particularity is that it has a skip connection before the output of a block. This type of connection is just adding the output of the last connection of the block with the input before applying a Rectified Linear Unit activation function _(ReLU)_ to the result, as described in the figure below.
 
@@ -87,8 +85,6 @@ class BasicBlock(nn.Module):
         return out
 ```
 
-<br/>
-
 Now that the Residual Block is defined, let's add it into the final feature extractor model as defined in the paper.
 
 ```python
@@ -113,11 +109,9 @@ class Extractor(nn.Module):
         return feature_maps
 ```
 
-<br />
-
 The final network is simply the result of a convolutional layer that is given as input to the residual layers.
 
-### Policy head
+## Policy head
 
 The policy network model is a simple convolutional layer (1 x 1 convolution to encode over the channels of the feature extractor output) with a batch normalization layer and a fully connected layer that outputs the probability distribution over the entire board, plus one extra move for the pass move.
 
@@ -143,7 +137,7 @@ class PolicyNet(nn.Module):
         return probas
 ```
 
-### Value head
+## Value head
 
 The value network model is a bit more sophisticated. It also has the couple convolution, batch normalization, ReLU and then a fully connected layer. Another fully connected layer is added on top of that. Finally, a hyperbolic tangent is applied to create the scalar output in range $[-1;1]$ that represents how likely the player is to win given the current game state.
 
@@ -168,15 +162,11 @@ class ValueNet(nn.Module):
         return winning
 ```
 
-<br />
-
-<center>. . .</center>
-
-## Monte Carlo Tree Search
+# Monte Carlo Tree Search
 
 Another major component of AlphaGo Zero is the asynchronous Monte Carlo Tree Search _(MCTS)_. This tree search algorithm is useful because it enables the network to think ahead and choose the best moves thanks to the simulations that it has made, without exploring every node at every step. Since Go is a perfect information game with a perfect simulator, it is possible to simulate a rollout of the environment and plan the response of the opponent far ahead, just like humans do. Let's see how it is actually done.
 
-### Node
+## Node
 
 Each node in the tree represents a board state and stores different statistics : the number of times the node has been visited _(n)_, the total action value _(w)_, the prior probability of reaching that node _(p)_, the mean action value (_q_, which is $q = w / n$) as well as the move made from the parent to reach that node, a pointer to the parent node and finally all the legal moves from this node that have a non-zero probability as children.
 
@@ -192,11 +182,9 @@ class Node:
         self.move = move
 ```
 
-<br />
+## Rollout
 
-### Rollout
-
-#### PUCT selection algorithm
+### PUCT selection algorithm
 
 The first action in the tree search is choosing the action that maximize a variant of the Polynomial Upper Confience Trees _(PUCT)_ formula. It allows the network to either explore unseen path early on, or further search the best possible moves later on thanks to the exploration constant _$c_{puct}$\_.
 The selection formula is defined as follows.
@@ -226,7 +214,7 @@ def select(nodes, c_puct=C_PUCT):
     return equals[0]
 ```
 
-#### Ending
+### Ending
 
 The selection continues until a leaf node is reached. A leaf node is a node that has not been expanded yet, which means that it must have no children.
 
@@ -237,8 +225,6 @@ def is_leaf(self):
     return len(self.children) == 0
 ```
 
-<br/>
-
 Once a leaf node is encountered, a random rotation or reflection of the state it contains is evaluated (because the rules of Go are invariant under rotation or reflection, more on that in the _training_ section) using the value and policy networks to get the value of the current state and the probabilities of all the next moves. All forbidden moves have their probability changed to 0, and the probability vector is then renormalized to sum to 1.
 After that, the node is expanded with every legal moves (moves that have a non-zero probability in the _probas_ array) given the state in the node, with the following function.
 
@@ -248,7 +234,7 @@ def expand(self, probas):
                 for idx in range(probas.shape[0]) if probas[idx] > 0]
 ```
 
-#### Backup
+### Backup
 
 Once the expansion is done, the statistics of the node and its parents are updated using the following function and loop, as well as the value that has been predicted by the value network.
 
@@ -266,7 +252,7 @@ while current_node.parent:
     current_node = current_node.parent
 ```
 
-### Move selection
+## Move selection
 
 Now that the simulations have been made, each potential next move contains statistics that describe the quality of the move. The move selection follows two scenarios.
 The first one is where AlphaGo plays competitively and the selected move is the most simulated one. This scenario is applied during the evaluation and when playing in general other than during training.
@@ -278,17 +264,15 @@ probas = action_scores / total
 move = np.random.choice(action_scores.shape[0], p=probas)
 ```
 
-<br/>
-
 This selection method allows AlphaGo to explore more potential options earlier on during training. After a certain amount of move (which is the _temperature_ constant), the move selection becomes competitive.
 
-## Final pipeline
+# Final pipeline
 
 Now that every individual building block has been explained, let's assemble them to see how AlphaGo has actually been trained.
 
 At the start of the program, at least two "core" processes are launched. The first one is the self-play and the second one is the training. Ideally, both processes would communicate via _RAM_. However, it is not trivial to pass information between different processes, which in this case is sending the generated games in the self-play process to the training process in order to update the dataset with the best quality games to make the agent learn from better games faster. To do that, I decided to use a MongoDB database instead, to be able to have each process run independently with only one true source of information.
 
-### Self-play
+## Self-play
 
 The self-play component is the one in charge of generating data. It works by using the current best agent to play against itself. After a game finishes (either by the two players passing, one of the player resigning or the number of moves becoming larger that a constant threshold), every registered action of the game is updated with the winner of the game, going from the shape _(board_state, move, player_color)_ to _(board_state, move, winner)_. Every time a batch is generated, the process verifies that the current agent used to generate games is still the best agent. The following function is a rough sketch of how to self-play actually works.
 
@@ -311,7 +295,7 @@ def self_play():
             game_id += 1
 ```
 
-### Training
+## Training
 
 The training is relatively straightforward as well. The current best agent is trained using the new generated games. Each state in the dataset is augmented by applying all the dihedral rotations of a square (rotations and symmetries) to it to increase the size of the dataset. Every few iterations, the training process checks the database to see if the self-play process has generated new games and if it is the case, the training process fetches them and updates the dataset accordingly. After some iterations, the trained agent is sent to evaluation asynchronously in another process, as described in the function below.
 
@@ -355,8 +339,6 @@ def train():
                 last_id = fetch_new_games(collection, dataset, last_id)
 ```
 
-<br/>
-
 The loss function which is used to train the agent is the sum of the mean-squared error between the actual winner of the game and the predicted value, and the cross-entropy loss between the move that has been made and the predicted probability distribution. It is defined as follows in code.
 
 ```python
@@ -372,7 +354,7 @@ class AlphaLoss(torch.nn.Module):
         return total_error
 ```
 
-### Evaluation
+## Evaluation
 
 The evaluation consists of the current best agent playing against the trained agent using the competitive parameter (no exploration). They play a certain amount of games against each other, and if the trained agent beats the current best agent more than a certain amount of the time (55% of the time in the paper), then the trained agent is saved and becomes the new best agent.
 
@@ -395,7 +377,7 @@ def evaluate(player, new_player):
     return False
 ```
 
-## Results
+# Results
 
 After a week of training on my school's server, the agent played approximately 20k self-played games on a 9x9 Go board, using 128 MCTS simulations, playing 10 games in parallel. It did approximately 463k parameters update, with the best agent being replaced 417 times. Here is a clip of the best agent playing against himself.
 
@@ -403,15 +385,15 @@ After a week of training on my school's server, the agent played approximately 2
 
 As the video shows, the agent did not learn the "fundamentals" of the game, like life and death, or even atari. However, it seems to have learned that it is generally a good move to answer locally. It also looks like the agent knows that Go is about territory and not frontal combat, which is shown in the first few moves. The shapes are also really bad, and the agent still plays inside his own living groups and killing them by removing liberties.
 
-## Discussion
+# Discussion
 
 I wasn't able to get any promising results. It raises the question of whether I made errors in the implementation, or perhaps I used wrong hyperparameters. AlphaGo Zero was trained using 4.9 million games but with a way higher number of simulations (1600), so the poor results might also come from a lack of computation.
 
-## Acknowledgements
+# Acknowledgements
 
 I want to thank my school's AI association for letting me use the server to try to train this implementation of AlphaGo Zero. I would also like to thank everyone that gives feedback on the article. Be sure to get in touch with me if you have any suggestions or remarks about it.
 
-## References
+# References
 
 - [The code for this article](https://github.com/dylandjian/superGo)
 - [Mastering the game of Go without human knowledge](https://www.nature.com/articles/nature24270.epdf?author_access_token=VJXbVjaSHxFoctQQ4p2k4tRgN0jAjWel9jnR3ZoTv0PVW4gB86EEpGqTRDtpIz-2rmo8-KG06gqVobU5NSCFeHILHcVFUeMsbvwS-lxjqQGg98faovwjxeTUgZAUMnRQ) - DeepMind

@@ -1,17 +1,17 @@
-import React from 'react'
-import { Link } from 'gatsby'
 import {
+  Box,
+  HStack,
   Heading,
+  Stack,
   Text,
   VStack,
-  HStack,
-  Box,
   useMediaQuery,
-  Stack,
 } from '@chakra-ui/react'
+import { Link } from 'gatsby'
 import { GatsbyImage, getImage } from 'gatsby-plugin-image'
+import React from 'react'
 
-const BlogPostText = ({ post }) => {
+const GalleryPostText = ({ post }) => {
   const [isLargerThan500] = useMediaQuery('(min-width: 500px)')
 
   if (isLargerThan500) {
@@ -21,7 +21,7 @@ const BlogPostText = ({ post }) => {
           {post.frontmatter.title}
         </Heading>
         <Text fontSize={15} as="i" marginBottom={2}>
-          {`${post.frontmatter.date} - ${post.fields.readingTime.text}`}
+          {`${post.frontmatter.date}`}
         </Text>
 
         <Text fontSize={15} marginBottom={0}>
@@ -39,21 +39,18 @@ const BlogPostText = ({ post }) => {
       <Text fontSize={15} marginBottom={0}>
         {post.frontmatter.date}
       </Text>
-      <Text fontSize={15} as="i" marginBottom={0}>
-        {post.fields.readingTime.text}
-      </Text>
     </Stack>
   )
 }
 
-export const BlogPosts = ({ posts }) => {
-  if (posts.length === 0) {
-    return <Text>No blog posts found.</Text>
+export const GalleryPosts = ({ images }) => {
+  if (images.length === 0) {
+    return <Text>No blog images found.</Text>
   }
 
   return (
     <VStack spacing={8} paddingTop={4} alignItems="flex-start">
-      {posts.map((post: any) => {
+      {images.map((post: any) => {
         return (
           <Link
             to={post.fields.slug}
@@ -70,7 +67,7 @@ export const BlogPosts = ({ posts }) => {
               </Box>
 
               <VStack spacing={0} align="flex-start">
-                <BlogPostText post={post} />
+                <GalleryPostText post={post} />
               </VStack>
             </HStack>
           </Link>
